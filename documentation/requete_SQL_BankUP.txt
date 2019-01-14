@@ -1,0 +1,130 @@
+﻿    <<<Requêtes SQL pour la Base de Données BankUP>>>
+
+'Création Base de Données
+
+CREATE DATABASE bankup DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+
+
+'Création Tables
+
+CREATE TABLE agence
+(
+    id_Agence INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    num_Voie_Agence INT(5) NOT NULL,
+    voie_Agence VARCHAR(50) NOT NULL,
+    code_Postal_Agence INT(5) NOT NULL,
+    ville_Agence VARCHAR(25) NOT NULL
+)
+
+INSERT INTO `agence`(`num_Voie_Agence`, `voie_Agence`, `code_Postal_Agence`, `ville_Agence`) VALUES (12,"rue Georgé", 33000, "Bordeaux"),
+		(42,"rue Gaston",75116,"Paris");
+
+
+
+
+CREATE TABLE conseiller
+(
+    id_Conseiller INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nom_Conseiller VARCHAR(35) NOT NULL,
+    prenom_Conseiller VARCHAR(35) NOT NULL,
+    adresse_Mail_Conseiller VARCHAR(50) NOT NULL,
+    telephone_Conseiller VARCHAR(12) NOT NULL,
+    mdp_Conseiller VARCHAR(50) NOT NULL,
+    agence_Conseiller INT NOT NULL,
+    FOREIGN KEY (agence_Conseiller) REFERENCES agence(id_Agence)
+)
+
+INSERT INTO `conseiller`(`nom_Conseiller`, `prenom_Conseiller`, `adresse_Mail_Conseiller`, `telephone_Conseiller`, `mdp_Conseiller`, `agence_Conseiller`)
+VALUES ('Tabourin','Francis','ftabourin@bankup.fr',0123456789,'743139240ff612253817440d98acb2ce7939fbb4',1);
+INSERT INTO `conseiller`(`nom_Conseiller`, `prenom_Conseiller`, `adresse_Mail_Conseiller`, `telephone_Conseiller`, `mdp_Conseiller`, `agence_Conseiller`)
+VALUES ('Vintin', 'Ludovic', 'lvintin@bankup.fr', 0516283746, 'd9f0fc8309fe4293a3e1953756f91b435ee639d5', 2)
+
+
+CREATE TABLE client
+(
+    id_Client INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    civilite_Client ENUM('H', 'F', 'A') NOT NULL,
+    nom_Client VARCHAR(35) NOT NULL,
+    prenom_Client VARCHAR(35) NOT NULL,
+    date_Naissance_Client DATE NOT NULL,
+    pays_Client VARCHAR(50) NOT NULL,
+    adresse_Mail_Client VARCHAR(50) NOT NULL,
+    telephone_Client VARCHAR(12) NOT NULL,
+    num_Voie_Client INT(5) NOT NULL,
+    voie_Client VARCHAR(50) NOT NULL,
+    code_Postal_Client INT(5) NOT NULL,
+    ville_Client VARCHAR(25) NOT NULL,
+    mdp_Client VARCHAR(50) NOT NULL,
+    agence_Client INT NOT NULL,
+    FOREIGN KEY (agence_Client) REFERENCES agence(id_Agence)
+)
+
+
+CREATE TABLE compte
+(
+    id_Compte INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    date_Ouverture_Compte DATE NOT NULL,
+    type_Compte ENUM('courant', 'epargne') NOT NULL,
+    solde_Compte INT NOT NULL,
+    libelle_Compte VARCHAR(27) NOT NULL,
+    iban_Compte VARCHAR(27) NOT NULL,
+    bic_Compte VARCHAR(11) NOT NULL,
+    autorisation_Decouvert_Compte INT NOT NULL,
+    id_Detenteur_Compte INT NOT NULL,
+    FOREIGN KEY (id_Detenteur_Compte) REFERENCES client(id_Client)
+)
+
+CREATE TABLE beneficiaire
+(
+    id_Beneficiaire INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    id_Compte_Beneficiaire INT NOT NULL,
+    id_Client_Emetteur INT NOT NULL,
+    libelle_Beneficiaire VARCHAR(30),
+    validite_Beneficiaire BOOLEAN NOT NULL,
+    FOREIGN KEY (id_Compte_Beneficiaire) REFERENCES compte(id_Compte),
+    FOREIGN KEY (id_Client_Emetteur) REFERENCES client(id_Client)
+)
+
+
+CREATE TABLE chequier
+(
+    id_Chequier INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    id_Compte_Rattache INT NOT NULL,
+    date_Emission_Chequier DATE NOT NULL,
+    validite_Chequier BOOLEAN NOT NULL,
+    FOREIGN KEY (id_Compte_Rattache) REFERENCES compte(id_Compte)
+)
+
+
+CREATE TABLE cb
+(
+    id_Cb INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    id_Compte_Rattache INT NOT NULL,
+    num_Cb VARCHAR(16) NOT NULL,
+    cryptogramme_Cb INT(3) NOT NULL,
+    date_Expiration_Cb DATE NOT NULL,
+    FOREIGN KEY (id_Compte_Rattache) REFERENCES compte(id_Compte)
+)
+
+
+CREATE TABLE operation
+(
+    id_Operation INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    date_Operation DATETIME NOT NULL,
+    id_Emetteur_Operation INT,
+    id_Recepteur_Operation INT,
+    type_Operation ENUM('CB', 'Virement', 'Chequier') NOT NULL,
+    montant_Operation INT NOT NULL,
+    id_CB_Operation INT,
+    id_Chequier_Operation INT,
+    validite_Operation BOOLEAN NOT NULL,
+    FOREIGN KEY (id_Emetteur_Operation) REFERENCES compte(id_Compte),
+    FOREIGN KEY (id_Recepteur_Operation) REFERENCES compte(id_Compte),
+    FOREIGN KEY (id_CB_Operation) REFERENCES cb(id_Cb),
+    FOREIGN KEY (id_Chequier_Operation) REFERENCES chequier(id_Chequier)
+)
+
+INSERT INTO `operation`(`date_Operation`, `id_Emetteur_Operation`, `id_Recepteur_Operation`, `type_Operation`, `montant_Operation`, `id_Chequier_Operation`, `validite_Operation`)
+VALUES (SYSDATE(), 9, 15, 'Chequier', 123, 18, 0)
