@@ -11,10 +11,6 @@ Vert de bouton #4caf50
   box-sizing: border-box;
 }
 
-.h1 {
-font-variant: small-caps;
-}
-
 
 /* Mise en forme contenu de base (sans formulaire) */
 #contenu {
@@ -100,7 +96,7 @@ margin-bottom: 4px;
 }
 
 
-input[type=text], input[type=password], input[type=date], input[type=email], #pays, #civilite, #type_Compte {
+input[type=text], input[type=password], input[type=date], input[type=email],input[type=number],input[type=tel], #pays, #civilite, #type_Compte {
   width: 95%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -248,23 +244,6 @@ background-color: rgba(103,103,97);
   font-variant: small-caps;
 }
 
-div#informations.item_EC {
-  display: none;
-  padding: 10px 20px;
-  height: 100%;
-  background-color: white;
-  margin-left:10%; 
-  margin-right:10%; 
-  margin-top: 100px; 
-  align-content: center;
-}
-
-.item_EC {
-  display: none;
-  padding: 50px 20px;
-  height: 100%;
-  background-color: white;
-}
 
 div#informations.item_EC label {
   font-variant: small-caps;
@@ -676,3 +655,58 @@ div#liste_Beneficiaire th, div#liste_Beneficiaire td {
       outline: 0;
       margin:6px 0px 5px 0px;
     }
+
+
+  .bouton_Valider_Connexion_Inscription {
+      width: 180px; 
+      float:right; 
+      border-radius: 0px;
+      height: 50px;
+      font-size:90%; 
+      font-variant: small-caps;
+      background-color: #4CAF50;
+      margin-right: 35px;
+      color: white;
+      cursor: pointer;
+      border: none;
+      outline: 0;
+    }
+
+    .item_EC_Connexion_Inscription {
+      display: none;
+      padding: 10px 20px;
+      height: 250%;
+      background-color: white;
+      margin-left:10%; 
+      margin-right:10%; 
+      margin-top: 60px;
+      margin-bottom: 50px; 
+      align-content: center;
+      }
+
+      .item_EC_Connexion_Inscription h1 {
+        font-variant: small-caps;
+        font-size:28px;
+        font-weight: bold; 
+        }
+      .item_EC_Connexion_Inscription p {
+        font-size: 15px; 
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+
+      .formulaire_Connexion_Inscription label {
+      font-variant: small-caps;
+      font-weight: bold;
+      font-size: 15px;
+      }
+
+      .formulaire_Connexion_Inscription {
+        border: 1px solid #ddd;
+        padding: 20px 20px 20px 20px;
+        }
+
+        .item_EC h1 {
+          font-variant: small-caps;
+          font-size:28px;
+          }
