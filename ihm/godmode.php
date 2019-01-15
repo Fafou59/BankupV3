@@ -39,12 +39,12 @@
             // Si les données ne sont pas renseignées
             if (!isset($_POST["emetteur"], $_POST['recepteur'], $_POST['montant'], $_POST['type_Operation'])) { ?>
                 <h1>Console de simulation d'opérations</h1>
+                <hr>
                 <!-- Formulaire de création d'un opération par CB -->
-                <form class="formulaire" method="post" action="godmode.php" style="border:1px solid #ccc">
+                <form class="formulaire" method="post" action="godmode.php">
                     <div class="container">
                         <h3>Faire une opération par CB</h3>
                         <p>Merci de compléter les informations ci-dessous pour réaliser votre opération par CB.</p>
-                        <hr>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>
@@ -78,7 +78,7 @@
                                 <td><label for="montant">Indiquez le montant de l'opération :</label></td>
                                 <td><input name="montant" type="number" min="0" required>€</td>
                             </tr>
-                        </table>
+                        </table><br>
                         <div class="bouton_Form">
                             <button type="submit" name="type_Operation" value="CB" class="bouton_Valider">Valider l'opération par CB</button>
                         </div>
@@ -87,11 +87,10 @@
                 <hr>
 
                 <!-- Formulaire de création d'un opération par Chéquier -->
-                <form class="formulaire" method="post" action="godmode.php" style="border:1px solid #ccc">
+                <form class="formulaire" method="post" action="godmode.php">
                     <div class="container">
                         <h3>Faire une opération par chèque</h3>
                         <p>Merci de compléter les informations ci-dessous pour réaliser votre opération par chèque.</p>
-                        <hr>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>
@@ -126,8 +125,7 @@
                                 <td><label for="montant">Indiquez le montant de l'opération :</label></td>
                                 <td><input name="montant" type="number" min="0" required>€</td>
                             </tr>
-                        </table>
-
+                        </table><br>
                         <div class="bouton_Form">
                             <button type="submit" name="type_Operation" value="Chequier" class="bouton_Valider">Valider l'opération par chèque</button>
                         </div>
