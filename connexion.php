@@ -1,4 +1,4 @@
-<?php
+    <?php
     // Ajout du menu
     include('support/menu.php');
 
@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <div id="contenu">
+        <div class="item_EC_Connexion_Inscription" style="display: block" >
         <?php
             // Si identifiant (email) et mdp du visiteur renseignés
             if (isset($_POST["identifiant"], $_POST["mdp"])) {
@@ -34,11 +34,12 @@
 
                 //Si mdp incorrect
                 } else { ?>
-                    <h1>Connexion à votre espace client</h1>
+                    <h1>connexion à votre espace client</h1>
                     <p>Merci de renseigner vos identifiants de connexion.</p>
                     <p style="color:red">Nom d'utilisateur ou mot de passe érroné, veuillez réessayer.</p>
-                    <hr>
-                    <form class="formulaire" method="post" action="connexion.php" style="border:1px solid #ccc">
+                    <br>
+                    <br>  
+                    <form class="formulaire_Connexion_Inscription" method="post" action="connexion.php">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>   
                                 <td><label for="identifiant">Identifiant</label> :</td>
@@ -50,17 +51,17 @@
                             </tr>
                         </table>
                         <div class="bouton_Form">
-                            <button type="submit" class="bouton_Valider">Valider</button>
-                            <button type="button" class="bouton_Annuler">Annuler</button>
-                        </div>
+                            <button type="submit" class="bouton_Valider_Connexion_Insciption">Se connecter</button>
+                         </div>
                     </form>
                 <?php }
             // Si pas d'identifiant (email) et de mdp
             } else { ?>
-                <h1>Connexion à votre espace client</h1>
+                <h1>connexion à votre espace client</h1>
                 <p>Merci de renseigner vos identifiants de connexion.</p>
-                <hr>
-                <form class="formulaire" method="post" action="connexion.php" style="border:1px solid #ccc">          
+                <br>
+                <br>  
+                <form class="formulaire_Connexion_Inscription" method="post" action="connexion.php">          
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>   
                             <td><label for="identifiant">Identifiant</label> :</td>
@@ -72,8 +73,7 @@
                         </tr>
                     </table>
                     <div class="bouton_Form">
-                        <button type="button" class="bouton_Annuler">Annuler</button>
-                        <button type="submit" class="bouton_Valider">Se connecter</button>
+                    <button type="submit" class="bouton_Valider_Connexion_Inscription">Se connecter</button>
                     </div>
                 </form>
             <?php } ?>

@@ -14,14 +14,16 @@
     </head>
 
     <body>
+    <div class="item_EC_Connexion_Inscription" style="display:block">
         <?php
             // Si les données ne sont pas entrées
             if (!isset($_POST['civilite'], $_POST["mdp"], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>
-                <form class="formulaire" method="post" action="inscription.php" style="border:1px solid #ccc">
-                    <div class="container">
-                        <h1>Création de votre profil</h1>
+                <form class="formulaire_Connexion_Inscription" method="post" action="inscription.php">
+                        <h1>création de votre profil</h1>
                         <p>Merci de compléter les informations ci-dessous.</p>
+                        <br>
                         <hr>
+                        <br>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td><label for="civilite">Civilité*</label> :</td>
@@ -104,10 +106,8 @@
                         </table>
                         <p>En créant votre profil, vous acceptez nos <a href="#" style="color:dodgerblue">Conditions Générales d'utilisation</a>.</p>
                         <div class="bouton_Form">
-                            <button type="button" class="bouton_Annuler" >Retour</button>
-                            <button type="submit" class="bouton_Valider">Valider</button>
+                            <button type="submit" class="bouton_Valider_Connexion_Inscription">Valider</button>
                         </div>
-                    </div>
                 </form> <?php
             // Si les données sont disponibles
             } else {
@@ -145,7 +145,6 @@
 
                 // Si la requête s'effectue correctement
                 if ($conn->query($sql) === TRUE) { ?>
-                    <div class="container">
   				        <table>
                             <tr>
                                 <td>
@@ -159,9 +158,9 @@
                         <hr>
                         <h2>Connectez-vous pour continuer votre expérience !</h2>
                         <div class="bouton_Form">
-                            <button type="button" class="bouton_Annuler" onclick="location.href='espace_Client.php'">Aller sur Espace Client</button>
+                            <button type="button" class="bouton_Valider_Connexion_Inscription" onclick="location.href='espace_Client.php'">Aller sur Espace Client</button>
                         </div>
-                    </div> <?php
+                     <?php
                 // Si requête KO
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -169,6 +168,7 @@
             $conn->close();
             }
         ?> 
+    </div>    
     </body>
 
 </html>
