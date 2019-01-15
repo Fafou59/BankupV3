@@ -31,7 +31,7 @@
                 $sql2 = "INSERT INTO chequier (id_Compte_Rattache, date_Emission_Chequier, validite_Chequier) VALUES ('".$_POST['id_Compte']."', NOW(), 1)";
                 if ($conn->query($sql1) === TRUE AND $conn->query($sql2) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                    <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                     <div class="container">
                         <table>
                             <tr>
@@ -40,11 +40,11 @@
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                        <h2>Vous allez être redirigé vers l'espace client.</h2>
                     </div> <?php
                 } else { ?>
                     <!-- Redirection après 3 secondes -->
-                   <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                   <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                    <div class="container">
                        <table>
                            <tr>
@@ -61,7 +61,7 @@
                 VALUES ('".$_POST['id_Compte']."', NOW(), 1)";
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                    <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                     <div class="container">
                         <table>
                             <tr>
@@ -70,11 +70,11 @@
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                        <h2>Vous allez être redirigé vers l'espace client.</h2>
                     </div> <?php
                 } else { ?>
                     <!-- Redirection après 3 secondes -->
-                   <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                   <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                    <div class="container">
                        <table>
                            <tr>
@@ -83,7 +83,7 @@
                            </tr>
                        </table>
                        <hr>
-                       <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                       <h2>Vous allez être redirigé vers l'espace client.</h2>
                    </div> <?php
                 }
             }

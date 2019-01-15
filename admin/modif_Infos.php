@@ -22,16 +22,16 @@
         <?php
             if (!isset($_POST['civilite'], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>
                 <!-- Redirection après 3 secondes -->
-               <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+               <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                <div class="container">
                    <table>
                        <tr>
                            <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
-                           <td><h1 style="font-variant: small-caps;">Il maque des informations... Veuillez réessayer !</h1></td>	
+                           <td><h1 style="font-variant: small-caps;">Il manque des informations... Veuillez réessayer !</h1></td>	
                        </tr>
                    </table>
                    <hr>
-                   <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                   <h2>Vous allez être redirigé vers l'espace client.</h2>
                </div> <?php
             } else {
                 if ($_POST['civilite'] == "monsieur") {
@@ -60,20 +60,20 @@
 
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                    <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                     <div class="container">
                         <table>
                             <tr>
                                 <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
-                                <td><h1 style="font-variant: small-caps;">La carte a bien été créée.</h1></td>	
+                                <td><h1 style="font-variant: small-caps;">Les informations ont bien été modifiées.</h1></td>	
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                        <h2>Vous allez être redirigé vers l'espace client.</h2>
                     </div> <?php
                 } else { ?>
                     <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                    <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                     <div class="container">
                         <table>
                             <tr>
@@ -82,7 +82,7 @@
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                        <h2>Vous allez être redirigé vers l'espace client.</h2>
                     </div> <?php
                 }
             $conn->close();

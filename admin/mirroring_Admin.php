@@ -41,12 +41,9 @@
 
 <!DOCTYPE HTML>
 <html>
-
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="code.css" />
         <script type="text/javascript" src="support/menu_EC.jsx"></script>
-        <title>ADMIN BankUP - <?php echo($client['prenom_Client']." ".strtoupper($client['nom_Client'])); ?></title>
+        <title>ADMIN BankUP - <?php echo(strtoupper($client['nom_Client']).' '.$client['prenom_Client']; ?></title>
     </head>
 
 
@@ -56,6 +53,7 @@
             <button class="lienEC" onclick="openPage('comptes', this, '#E80969')" >Comptes</button>
             <button class="lienEC" onclick="openPage('operations', this, '#E80969')">Opérations</button>
             <button class="lienEC" onclick="openPage('beneficiaires', this, '#E80969')">Bénéficiaires</button>
+        </div>
 
             <div id="informations" class="item_EC">
                 <h1>Les informations de <?php echo($client['prenom_Client']." ".strtoupper($client['nom_Client'])); ?></h1>

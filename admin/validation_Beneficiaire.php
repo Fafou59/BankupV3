@@ -1,27 +1,53 @@
 <?php
-    if (isset($_POST['id_Beneficiaire'])) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "bankup";
+    include('support/menu_Admin.php');
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    include('support/connexion_bdd.php');
 
-        $sql = "UPDATE beneficiaire SET beneficiaire.validite_Beneficiaire = 1 WHERE beneficiaire.id_Beneficiaire = '".$_POST['id_Beneficiaire']."'";
-
-        if ($conn->query($sql) === TRUE) { 
-            header('Location: espace_Admin.php');
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    $conn->close();
-    } else {
-        header('Location: espace_Admin.php');
+    if (!isset($_SESSION['admin_Id'])) {
+        header('Location : connexion_Admin.php');
     }
-
 ?>
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>ADMIN BankUP - Validation bénéficiaire</title>
+    </head>
+
+    <body>
+        <?php
+            if (isset($_POST['id_Beneficiaire'])) {
+                $sql = "UPDATE beneficiaire SET beneficiaire.validite_Beneficiaire = 1 WHERE beneficiaire.id_Beneficiaire = '".$_POST['id_Beneficiaire']."'";
+                if ($conn->query($sql) === TRUE) { ?>
+                    <!-- Redirection après 3 secondes -->
+                    <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                    <div class="container">
+                        <table>
+                            <tr>
+                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><h1 style="font-variant: small-caps;">Le bénéficiaire a bien été validé.</h1></td>	
+                            </tr>
+                        </table>
+                        <hr>
+                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                    </div> <?php
+                } else { ?>
+                     <!-- Redirection après 3 secondes -->
+                    <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                    <div class="container">
+                        <table>
+                            <tr>
+                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><h1 style="font-variant: small-caps;">Oups... Une erreur s'est produite !</h1></td>	
+                            </tr>
+                        </table>
+                        <hr>
+                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
+                    </div> <?php
+                }
+            } else {
+                header('Location: espace_Admin.php');
+            }
+        ?>
+    </body>
+</html>
