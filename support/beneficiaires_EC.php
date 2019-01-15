@@ -58,7 +58,7 @@
                                 if ($beneficiaire[4]==1) { ?>
                                     <td style="width:20%">Actif</td>
                                     <td style="width:20%"><form method="post" action="virement.php">
-                                        <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/add-plus-button.png" style="width:15px; margin-right:10px;">Faire  un virement</button><br /><br />
+                                        <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/add-plus-button.png" style="width:15px; margin-right:10px;">Virement</button><br /><br />
                                     </form style="height: 40px;"></td>
                                 <?php } else { ?>
                                     <td style="width:20%">En attente</td>

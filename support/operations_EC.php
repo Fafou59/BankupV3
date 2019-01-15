@@ -19,7 +19,7 @@
                 <td><?php echo($operation[4]) ?></td>
                 <td><?php echo($operation[13]) ?></td>
                 <td style="font-weight:bold"><?php echo('<font color="red">-'.$operation[5].'€</font>') ?></td>
-                <td><?php if ($operation[8]==1) {echo('Effectué');} else {echo('En attente de validation');}?>
+                <td><?php if ($operation[8]==1) {echo('Effectué');} else {echo('En attente');}?>
             </tr>
         <?php }
         while($operation = $operations_recepteur->fetch_row()) { ?>
@@ -28,7 +28,7 @@
                 <td><?php echo($operation[4]) ?></td>
                 <td><?php echo($operation[13]) ?></td>
                 <td style="font-weight:bold"><?php echo('<font color="green">+'.$operation[5].'€</font>') ?></td>
-                <td><?php if ($operation[8]==1) {echo('Effectué');} else {echo('En attente de validation');}?>
+                <td><?php if ($operation[8]==1) {echo('Effectué');} else {echo('En attente');}?>
             </tr>
         <?php } ?>
     </table>
