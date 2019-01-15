@@ -1,4 +1,4 @@
-/*Code couleur : 
+<img src="images/bin.png" style="width:25px; margin-right:20px;">/*Code couleur : 
 Bleu : #0DDBD8
 Rose : #E80969
 Gris : #f1f1f1 --> #55555 plus foncé et plus lisible
@@ -609,7 +609,7 @@ div#beneficiaires.item_EC label {
   padding-left:0px 0px 0px 0px; 
   margin:0% 0% 0% 0%;
   background-color: #4caf50;
-  width:320px;
+  width:330px;
 }
 div#beneficiaires.item_EC h3 {
   font-variant: small-caps;
@@ -658,6 +658,21 @@ div#liste_Beneficiaire th, div#liste_Beneficiaire td {
     vertical-align: middle;
     }
 
-    table.onglet_Beneficiaire h3, table.onglet_Beneficiaire1 h3{
+    table.onglet_Beneficiaire h3, table.onglet_Beneficiaire1 h3 {
       margin: 0px 0px 0px 0px;
+    }
+
+    .bouton_Virement {
+      border-radius: 0px;
+      width: 150px;
+      height: 30px;
+      font-size:80%; 
+      float:left; 
+      font-variant: small-caps;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border: none;
+      outline: 0;
+      margin:6px 0px 5px 0px;
     }
