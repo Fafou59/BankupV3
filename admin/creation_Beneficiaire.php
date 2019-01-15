@@ -26,20 +26,20 @@
             $compte = $resultat->fetch_assoc();
 
             if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'])) {
+                ?> <div class="item_EC" style="display: block"> <?php
                 if (isset($compte)) {
                     if ($compte['id_Detenteur_Compte']==$_SESSION['id_Client_Admin']) { ?>
                         <!-- Redirection après 3 secondes -->
                         <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
-                        <div class="container">
                             <table>
                                 <tr>
-                                    <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                    <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
                                     <td><h1 style="font-variant: small-caps;">Vous ne pouvez pas ajouter un compte du client comme bénéficiaire.</h1></td>	
                                 </tr>
                             </table>
                             <hr>
-                            <h2>Vous allez être redirigé vers l'espace client.</h2>
-                        </div> <?php
+                            <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p>
+                        <?php
                     } else {
                         $requete = $conn->prepare("SELECT beneficiaire.* FROM beneficiaire, compte WHERE '".$id_Emetteur."' = beneficiaire.id_Client_Emetteur AND '".$compte['id_Compte']."' = beneficiaire.id_Compte_Beneficiaire");
                         $requete->execute();
@@ -56,7 +56,6 @@
                             if ($conn->query($sql) === TRUE) {?>
                                 <!-- Redirection après 3 secondes -->
                                 <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
-                                <div class="container">
                                     <table>
                                         <tr>
                                             <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
@@ -64,12 +63,10 @@
                                         </tr>
                                     </table>
                                     <hr>
-                                    <h2>Vous allez être redirigé vers l'espace client.</h2>
-                                </div> <?php
+                                    <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p><?php
                             } else { ?>
                                 <!-- Redirection après 3 secondes -->
                                 <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
-                                <div class="container">
                                     <table>
                                         <tr>
                                             <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
@@ -77,15 +74,13 @@
                                         </tr>
                                     </table>
                                     <hr>
-                                    <h2>Vous allez être redirigé vers l'espace client.</h2>
-                                </div> <?php
+                                    <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
                             }
                         }
                     }
                 } else { ?>
                     <!-- Redirection après 3 secondes -->
                     <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
-                    <div class="container">
                         <table>
                             <tr>
                                 <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
@@ -93,9 +88,9 @@
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace client.</h2>
-                    </div> <?php
-                }
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p>
+                    <?php
+                }?> </div><?php
             } else {
                 header('Location: mirroring_Admin.php');
             }

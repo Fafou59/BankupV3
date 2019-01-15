@@ -18,33 +18,32 @@
         <?php
             if (isset($_POST['id_Beneficiaire'])) {
                 $sql = "UPDATE beneficiaire SET beneficiaire.validite_Beneficiaire = 1 WHERE beneficiaire.id_Beneficiaire = '".$_POST['id_Beneficiaire']."'";
+                ?> <div class="item_EC" style="display: block"> <?php
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
                     <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
-                    <div class="container">
                         <table>
                             <tr>
-                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
                                 <td><h1 style="font-variant: small-caps;">Le bénéficiaire a bien été validé.</h1></td>	
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
-                    </div> <?php
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace administrateur.</p>
+                    <?php
                 } else { ?>
                      <!-- Redirection après 3 secondes -->
                     <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
-                    <div class="container">
                         <table>
                             <tr>
-                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
                                 <td><h1 style="font-variant: small-caps;">Oups... Une erreur s'est produite !</h1></td>	
                             </tr>
                         </table>
                         <hr>
-                        <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
-                    </div> <?php
-                }
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace administrateur.</p>
+                    <?php
+                } ?> </div> <?php
             } else {
                 header('Location: espace_Admin.php');
             }
