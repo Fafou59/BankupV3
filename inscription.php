@@ -145,25 +145,32 @@
 
                 // Si la requête s'effectue correctement
                 if ($conn->query($sql) === TRUE) { ?>
-  				        <table>
+                    <!-- Redirection après 3 secondes -->
+                    <meta http-equiv="Refresh" content="3;URL=connexion.php">
+                    <div class="item_EC" style="display: block">                    
+                        <table>
                             <tr>
-                                <td>
-                                    <img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;">
-                                </td>
-                                <td>
-                                    <h1 style="font-variant: small-caps;">Votre profil a bien été créé.</h1>
-                                </td>	
+                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><h1 style="font-variant: small-caps;">Votre profil a bien été créé.</h1></td>	
                             </tr>
                         </table>
                         <hr>
-                        <h2>Connectez-vous pour continuer votre expérience !</h2>
-                        <div class="bouton_Form">
-                            <button type="button" class="bouton_Valider_Connexion_Inscription" onclick="location.href='espace_Client.php'">Aller sur Espace Client</button>
-                        </div>
-                     <?php
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'écran de connexion.</p>
+                    </div><?php
                 // Si requête KO
-                } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                } else { ?>
+                    <!-- Redirection après 3 secondes -->
+                    <meta http-equiv="Refresh" content="3;URL=inscription.php">
+                    <div class="item_EC" style="display: block">
+                        <table>
+                            <tr>
+                                <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><h1 style="font-variant: small-caps;">Oups... Une erreur s'est produite !</h1></td>	
+                            </tr>
+                        </table>
+                        <hr>
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'inscription.</p> 
+                    </div><?php
                 }
             $conn->close();
             }
