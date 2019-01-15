@@ -29,7 +29,7 @@
                 if (isset($compte)) {
                     if ($compte['id_Detenteur_Compte']==$_SESSION['id_Client_Admin']) { ?>
                         <!-- Redirection après 3 secondes -->
-                        <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                        <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                         <div class="container">
                             <table>
                                 <tr>
