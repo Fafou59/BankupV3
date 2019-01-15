@@ -69,7 +69,7 @@
                                     </form></td>
                             <?php $i = $i + 1; ?>
                         </tr>
-                    } ?>
+                    <?php } ?>
                 </table>
             </div>
         </tr>
