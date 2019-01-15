@@ -43,9 +43,6 @@
                             <td><input type="text" name="libelle_Compte" id="libelle_Compte" size="20" minlength="2" maxlength="25" placeholder="Entrez le libellé du compte" /></td>   
                         </tr>
                     </table>
-
-                    <p>En validant la création du compte, vous acceptez nos <a href="#" style="color:dodgerblue">Conditions Générales de Vente</a>.</p>
-
                     <div class="bouton_Form">
                         <button type="button" class="bouton_Annuler">Retour</button>
                         <button type="submit" class="bouton_Valider">Valider</button>
@@ -89,7 +86,7 @@
                    <div class="container">
                        <table>
                            <tr>
-                               <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                               <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
                                <td><h1 style="font-variant: small-caps;">Oups... Une erreur s'est produite !</h1></td>	
                            </tr>
                        </table>

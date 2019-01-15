@@ -43,7 +43,7 @@
                         <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
                         <table>
                             <tr>
-                                <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
                                 <td><h1 style="font-variant: small-caps;">Oups... Une erreur s'est produite !</h1></td>	
                             </tr>
                         </table>
