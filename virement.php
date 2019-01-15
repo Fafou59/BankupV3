@@ -24,7 +24,7 @@
     $requete->execute();
     $beneficiaires = $requete->get_result();
 
-    // Si le virement a été initié par la liste des bénéficiaires, paramétrage auto du comtpe créditeur
+    // Si le virement a été initié par la liste des bénéficiaires, paramétrage auto du compte créditeur
     if (isset($_POST['id_Beneficiaire'])) {
         $id_Beneficiaire = $_POST['id_Beneficiaire'];
     } else {
@@ -39,10 +39,10 @@
     </head>
 
     <body>
-        <?php
-            // Si données non renseignées
-            if ((!isset($_POST["emetteur"], $_POST['recepteur'], $_POST['montant']))) { ?>
-                <div class="container">
+        <div class="item_EC" style="display: block">
+            <?php
+                // Si données non renseignées
+                if ((!isset($_POST["emetteur"], $_POST['recepteur'], $_POST['montant']))) { ?>
                     <h1>Faire un virement</h1>
                     <p>Merci de compléter les informations ci-dessous pour réaliser votre virement.</p>
                     <hr>
@@ -90,39 +90,52 @@
                             <button type="submit" class="bouton_Valider">Valider</button>
                         </div>
                     </form>
-                </div> <?php
-            // Si données renseignées
-            } else { 
-                // Réaliser requête compte débiteur pour vérifier solde
-                $requete = $conn->prepare("SELECT compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte WHERE compte.id_Compte = ".$_POST['emetteur']);
-                $requete->execute();
-                $resultat = $requete->get_result();
-                $solde = $resultat->fetch_assoc();
+                    <?php
+                // Si données renseignées
+                } else { 
+                    // Réaliser requête compte débiteur pour vérifier solde
+                    $requete = $conn->prepare("SELECT compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte WHERE compte.id_Compte = ".$_POST['emetteur']);
+                    $requete->execute();
+                    $resultat = $requete->get_result();
+                    $solde = $resultat->fetch_assoc();
 
-                // Si solde suffisant pour effectuer le virement
-                if ($solde['solde_Compte'] - $_POST['montant'] >= $solde['autorisation_Decouvert_Compte']*-1) {
-                    // include('support/connexion_bdd.php');
-                    // Requête mise à jour solde compte débiteur
-                    $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['emetteur']."'";
-                    // Requête mise à jour solde compte créditeur
-                    $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['recepteur']."'";
-                    // Requête ajout opération
-                    $sql2 = "INSERT INTO operation (date_Operation, id_Emetteur_Operation, id_Recepteur_Operation, type_Operation, montant_Operation, validite_Operation) VALUES (SYSDATE(), '".$_POST['emetteur']."', '".$_POST['recepteur']."', 'Virement', '".$_POST['montant']."', 1)";
-                    // Si requêtes bien effectuées
-                    if ($conn->query($sql0) === TRUE AND $conn->query($sql1) === TRUE AND $conn->query($sql2)) {
-                        header('Location: espace_Client.php');
-                    // Si requêtes KO
-                    } else {
-                        echo "Error: " . $sql0 . "<br>" . $conn->error . "<br>";
-                        echo "Error: " . $sql1 . "<br>" . $conn->error . "<br>";
-                        echo "Error: " . $sql2 . "<br>" . $conn->error;
+                    // Si solde suffisant pour effectuer le virement
+                    if ($solde['solde_Compte'] - $_POST['montant'] >= $solde['autorisation_Decouvert_Compte']*-1) {
+                        // Requête mise à jour solde compte débiteur
+                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['emetteur']."'";
+                        // Requête mise à jour solde compte créditeur
+                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['recepteur']."'";
+                        // Requête ajout opération
+                        $sql2 = "INSERT INTO operation (date_Operation, id_Emetteur_Operation, id_Recepteur_Operation, type_Operation, montant_Operation, validite_Operation) VALUES (SYSDATE(), '".$_POST['emetteur']."', '".$_POST['recepteur']."', 'Virement', '".$_POST['montant']."', 1)";
+                        // Si requêtes bien effectuées
+                        if ($conn->query($sql0) === TRUE AND $conn->query($sql1) === TRUE AND $conn->query($sql2)) { ?>
+                            <!-- Redirection après 3 secondes -->
+                            <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
+                            <table>
+                                <tr>
+                                    <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                    <td><h1 style="font-variant: small-caps;">Votre virement a bien été effectué.</h1></td>	
+                                </tr>
+                            </table>
+                            <hr>
+                            <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p><?php
+                        // Si requête KO
+                        } else { ?>
+                            <!-- Redirection après 3 secondes -->
+                            <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
+                            <table>
+                                <tr>
+                                    <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                    <td><h1 style="font-variant: small-caps;">Oups... Une erreur s'est produite !</h1></td>	
+                                </tr>
+                            </table>
+                            <hr>
+                            <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
+                        }
+                    $conn->close();
                     }
-                // Si solde insuffisant
-                } else {
-                    header('Location: virement.php');
                 }
-            $conn->close();
-            }
-        ?>
+            ?>
+        </div>
     </body>
 </html>
