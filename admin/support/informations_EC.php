@@ -1,6 +1,6 @@
 <div id="informations" class="item_EC">
     <div class="container">
-        <h1 style="font-variant: small-caps;">vos informations</h1>
+        <h1>vos informations</h1>
         <p style="font-size: 15px">Vous pouvez modifier vos informations. N'oubliez pas de valider.</p>
         <hr>
         <form method="post" action="modif_Infos.php" >
