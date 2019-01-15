@@ -36,9 +36,10 @@
 
     <body>
         <?php
+            // Si les données ne sont pas renseignées
             if (!isset($_POST["emetteur"], $_POST['recepteur'], $_POST['montant'], $_POST['type_Operation'])) { ?>
                 <h1>Console de simulation d'opérations</h1>
-                <!-- Opération par CB -->
+                <!-- Formulaire de création d'un opération par CB -->
                 <form class="formulaire" method="post" action="godmode.php" style="border:1px solid #ccc">
                     <div class="container">
                         <h3>Faire une opération par CB</h3>
@@ -49,6 +50,7 @@
                                 <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>
                                 <td><select name="emetteur" id="pays" required>
                                     <?php
+                                        // Liste toutes les CB avec détails du comtpe et du détenteur
                                         echo("<optgroup label='Cartes bancaires'>");
                                         while($cb = $cbs->fetch_row())
                                         {
@@ -63,6 +65,7 @@
                                 <td>
                                     <select name="recepteur" id="pays" required>
                                     <?php
+                                        // Liste tous les comptes
                                         while($compte = $comptes->fetch_row())
                                         {
                                             echo('<option value='.$compte[0].'>Client : '.$compte[5].' '.$compte[4].' / Compte : '.$compte[1].' ('.$compte[2].')</option>');
@@ -83,56 +86,58 @@
                 </form>
                 <hr>
 
-                <!-- Opération par Chéquier -->
+                <!-- Formulaire de création d'un opération par Chéquier -->
                 <form class="formulaire" method="post" action="godmode.php" style="border:1px solid #ccc">
-                <div class="container">
-                    <h3>Faire une opération par chèque</h3>
-                    <p>Merci de compléter les informations ci-dessous pour réaliser votre opération par chèque.</p>
-                    <hr>
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>
-                            <td><select name="emetteur" id="pays" required>
-                                <?php
-                                    echo("</optgroup><optgroup label='Chéquiers'>");
-                                    while($chequier = $chequiers->fetch_row())
-                                    {
-                                        echo('<option value='.$chequier[4].'>Client : '.$chequier[7].' '.$chequier[6].' / Compte : '.$chequier[1].' ('.$chequier[2].') / Solde : '.$chequier[3].'€</option>');
-                                    }
-                                    echo("</optgroup>");
-                                ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="recepteur">Sélectionnez le compte à créditer :</label></td>
-                            <td>
-                                <select name="recepteur" id="pays" required>
-                                <?php
-                                    while($compte2 = $comptes2->fetch_row())
-                                    {
-                                        echo('<option value='.$compte2[0].'>Client : '.$compte2[5].' '.$compte2[4].' / Compte : '.$compte2[1].' ('.$compte2[2].')</option>');
-                                    }
-                                ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="montant">Indiquez le montant de l'opération :</label></td>
-                            <td><input name="montant" type="number" min="0" required>€</td>
-                        </tr>
-                    </table>
+                    <div class="container">
+                        <h3>Faire une opération par chèque</h3>
+                        <p>Merci de compléter les informations ci-dessous pour réaliser votre opération par chèque.</p>
+                        <hr>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>
+                                <td><select name="emetteur" id="pays" required>
+                                    <?php
+                                        // Liste tous les chèques avec détails du compte et du détenteur
+                                        echo("</optgroup><optgroup label='Chéquiers'>");
+                                        while($chequier = $chequiers->fetch_row())
+                                        {
+                                            echo('<option value='.$chequier[4].'>Client : '.$chequier[7].' '.$chequier[6].' / Compte : '.$chequier[1].' ('.$chequier[2].') / Solde : '.$chequier[3].'€</option>');
+                                        }
+                                        echo("</optgroup>");
+                                    ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="recepteur">Sélectionnez le compte à créditer :</label></td>
+                                <td>
+                                    <select name="recepteur" id="pays" required>
+                                    <?php
+                                        // Liste tous les comptes
+                                        while($compte2 = $comptes2->fetch_row())
+                                        {
+                                            echo('<option value='.$compte2[0].'>Client : '.$compte2[5].' '.$compte2[4].' / Compte : '.$compte2[1].' ('.$compte2[2].')</option>');
+                                        }
+                                    ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="montant">Indiquez le montant de l'opération :</label></td>
+                                <td><input name="montant" type="number" min="0" required>€</td>
+                            </tr>
+                        </table>
 
-                    <div class="bouton_Form">
-                        <button type="submit" name="type_Operation" value="Chequier" class="bouton_Valider">Valider l'opération par chèque</button>
-                    </div>
+                        <div class="bouton_Form">
+                            <button type="submit" name="type_Operation" value="Chequier" class="bouton_Valider">Valider l'opération par chèque</button>
+                        </div>
                     </div>
                 </form>
                 <hr>
             <?php } else {
                 // Si chèque, opération à valider sur espace Admin
                 if ($_POST['type_Operation'] == 'Chequier') {
-                    // Requête pour obtenir l'id du compte rattaché au chéquier
+                    // Requête pour obtenir les infos du compte rattaché au chéquier
                     $requete = $conn->prepare("SELECT compte.id_Compte, compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte, chequier WHERE chequier.id_Chequier = ".$_POST['emetteur']." AND compte.id_compte = chequier.id_Compte_Rattache");
                     $requete->execute();
                     $resultat = $requete->get_result();
@@ -140,6 +145,7 @@
 
                     // Si solde suffisant
                     if ($compte['solde_Compte'] - $_POST['montant'] >= $compte['autorisation_Decouvert_Compte']*-1) {
+                        // Ajout de l'opération, mais pas d'opération sur les soldes des comptes (attente de validation)
                         $sql = "INSERT INTO operation (date_Operation, id_Emetteur_Operation, id_Recepteur_Operation, type_Operation, montant_Operation, id_Chequier_Operation, validite_Operation) VALUES (SYSDATE(), '".$compte['id_Compte']."', '".$_POST['recepteur']."', '".$_POST['type_Operation']."', '".$_POST['montant']."', '".$_POST['emetteur']."', 0)";
                         if ($conn->query($sql) === TRUE) { ?>
                             <meta http-equiv="Refresh" content="3;URL=godmode.php">
@@ -156,13 +162,14 @@
                     <?php }
                 // Si CB, opération directement validée et soldes des comptes mis à jour
                 } else {
-                    // Requête pour obtenir l'id du compte rattaché à la CB
+                    // Requête pour obtenir les infos du compte rattaché à la CB
                     $requete = $conn->prepare("SELECT compte.id_Compte, compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte, cb WHERE cb.id_Cb = ".$_POST['emetteur']." AND compte.id_compte = cb.id_Compte_Rattache");
                     $requete->execute();
                     $resultat = $requete->get_result();
                     $compte = $resultat->fetch_assoc();
                     // Si solde suffisant
                     if ($compte['solde_Compte'] - $_POST['montant'] >= $compte['autorisation_Decouvert_Compte']*-1) {
+                        // Ajout de l'opération et opérations sur les soldes des comptes
                         $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['emetteur']."'";
                         $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['recepteur']."'";
                         $sql2 = "INSERT INTO operation (date_Operation, id_Emetteur_Operation, id_Recepteur_Operation, type_Operation, montant_Operation, id_CB_Operation, validite_Operation) VALUES (SYSDATE(), '".$compte['id_Compte']."', '".$_POST['recepteur']."', '".$_POST['type_Operation']."', '".$_POST['montant']."', '".$_POST['emetteur']."', 1)";    
