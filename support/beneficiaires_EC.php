@@ -50,8 +50,8 @@
                         <th style="width:20%"></th>
                         <th style="width:10%"></th>
                     </tr>
-                    <tr>
-                        <?php while($beneficiaire = $beneficiaires->fetch_row()) { ?>
+                    <?php while($beneficiaire = $beneficiaires->fetch_row()) { ?>
+                        <tr>
                             <td style="width:15%"><?php echo($i) ?></td>
                             <td style="width:35%"><?php echo($beneficiaire[3]) ?></td>
                             <?php 
@@ -67,10 +67,9 @@
                                     <td style="width:10%"><form method="post" action="suppression_Beneficiaire.php" style="height: 40px;">
                                         <button name="id_Beneficiaire" type="submit" class="bouton_Suppression" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/bin.png" style="width:25px; margin-right:20px;"></button><br /><br />
                                     </form></td>
-                            <?php
-                            $i = $i + 1;
-                        } ?>
-                    </tr>
+                            <?php $i = $i + 1; ?>
+                        </tr>
+                    } ?>
                 </table>
             </div>
         </tr>
