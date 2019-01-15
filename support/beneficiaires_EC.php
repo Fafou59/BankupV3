@@ -50,15 +50,15 @@
                         <th style="width:20%"></th>
                         <th style="width:10%"></th>
                     </tr>
-                    <?php while($beneficiaire = $beneficiaires->fetch_row()) { ?>
-                        <tr>
+                    <tr>
+                        <?php while($beneficiaire = $beneficiaires->fetch_row()) { ?>
                             <td style="width:15%"><?php echo($i) ?></td>
                             <td style="width:35%"><?php echo($beneficiaire[3]) ?></td>
                             <?php 
                                 if ($beneficiaire[4]==1) { ?>
                                     <td style="width:20%">Actif</td>
                                     <td style="width:20%"><form method="post" action="virement.php">
-                                        <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>">Faire virement</button><br /><br />
+                                        <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/add-plus-button.png" style="width:15px; margin-right:10px;">Faire  un virement</button><br /><br />
                                     </form style="height: 40px;"></td>
                                 <?php } else { ?>
                                     <td style="width:20%">En attente</td>
@@ -67,9 +67,10 @@
                                     <td style="width:10%"><form method="post" action="suppression_Beneficiaire.php" style="height: 40px;">
                                         <button name="id_Beneficiaire" type="submit" class="bouton_Suppression" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/bin.png" style="width:25px; margin-right:20px;"></button><br /><br />
                                     </form></td>
-                            <?php $i = $i + 1; ?>
-                        </tr>
-                    <?php } ?>
+                            <?php
+                            $i = $i + 1;
+                        } ?>
+                    </tr>
                 </table>
             </div>
         </tr>
