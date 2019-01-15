@@ -56,7 +56,7 @@
                     $agence = 2;
                 }
 
-                $sql = "UPDATE client SET civilite_Client = '".$civilite."', nom_Client = '".$nom."', prenom_Client = '".$prenom."', date_Naissance_Client = '".$date_Naissance."', adresse_Mail_Client = '".$email."', telephone_Client = '".$telephone."', num_Voie_Client = '".$numero_Voie."', voie_Client = '".$voie."', code_Postal_Client = '".$code_Postal."', ville_Client = '".$ville."', agence_Client = '".$agence."', pays_Client = '".$pays."' WHERE client.id_Client = '".$_SESSION['id']."'";
+                $sql = "UPDATE client SET civilite_Client = '".$civilite."', nom_Client = '".$nom."', prenom_Client = '".$prenom."', date_Naissance_Client = '".$date_Naissance."', adresse_Mail_Client = '".$email."', telephone_Client = '".$telephone."', num_Voie_Client = '".$numero_Voie."', voie_Client = '".$voie."', code_Postal_Client = '".$code_Postal."', ville_Client = '".$ville."', agence_Client = '".$agence."', pays_Client = '".$pays."' WHERE client.id_Client = '".$_SESSION['id_Client_Admin']."'";
 
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->

@@ -131,9 +131,20 @@
                             <h2>Vous allez être redirigé vers l'espace administrateur.</h2>
                         </div> <?php
                     }
-                } else {
-                    header('Location: virement.php');
-                }
+                } else { ?>
+                    <!-- Redirection après 3 secondes -->
+                   <meta http-equiv="Refresh" content="3;URL=virement_Admin.php">
+                   <div class="container">
+                       <table>
+                           <tr>
+                               <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                               <td><h1 style="font-variant: small-caps;">Oups... Votre solde est insuffisant !</h1></td>	
+                           </tr>
+                       </table>
+                       <hr>
+                       <h2>Veuillez réessayer de faire un virement avec un montant moins important.</h2>
+                   </div> <?php
+               }
             $conn->close();
             }
         ?>

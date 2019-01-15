@@ -10,6 +10,10 @@
     if (!isset($_POST['id_Compte'])) {
         header('Location: mirroring_Admin.php');
     }
+
+    if (!isset($_POST['id_Client_Admin'])) {
+        header('Location: mirroring_Admin.php');
+    }
 ?>
 
 <!DOCTYPE HTML>
@@ -23,15 +27,13 @@
             $num_Cb = trim(rand(10000000,99999999)).trim(rand(10000000,99999999));
             $cryptogramme = rand(100,999);
 
-            include('connexion_bdd.php');
-
             // Réaliser requête
             $sql = "INSERT INTO cb (id_Compte_Rattache, num_Cb, cryptogramme_Cb, date_Expiration_Cb)
             VALUES ('".$_POST['id_Compte']."', '".$num_Cb."', '".$cryptogramme."', DATE_ADD(NOW(),INTERVAL 5 YEAR))";
             
             if ($conn->query($sql) === TRUE) { ?>
                 <!-- Redirection après 3 secondes -->
-                <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+                <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                 <div class="container">
                     <table>
                         <tr>
@@ -44,7 +46,7 @@
                 </div> <?php
             } else { ?>
                 <!-- Redirection après 3 secondes -->
-               <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
+               <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                <div class="container">
                    <table>
                        <tr>

@@ -15,27 +15,31 @@
         }
     }
 
-    // Réaliser requête client
-    $requete = $conn->prepare("SELECT client.* FROM client WHERE client.id_Client = '".$_SESSION['id_Client_Admin']."'");
+    // Réaliser requête client & agence rattaché à l'id client
+    $requete = $conn->prepare("SELECT client.*, agence.* FROM client, agence WHERE client.id_Client = '".$_SESSION['id_Client_Admin']."' AND agence.id_Agence = client.agence_Client");
     $requete->execute();
     $resultat = $requete->get_result();
     $client = $resultat->fetch_assoc();
 
-    //Réaliser requête agence
-    $requete = $conn->prepare("SELECT agence.* FROM agence, client WHERE client.agence_Client = agence.id_Agence");
-    $requete->execute();
-    $resultat = $requete->get_result();
-    $agence = $resultat->fetch_assoc();
-
-    // Réaliser requête compte
-    $requete = $conn->prepare("SELECT compte.* FROM compte WHERE '".$_SESSION['id_Client_Admin']."' = compte.id_Detenteur_Compte ORDER BY id_Compte ASC");
+    // Réaliser requête comptes rattachés au client
+    $requete = $conn->prepare("SELECT compte.* FROM compte WHERE '".$_SESSION['id_Client_Admin']."' = compte.id_Detenteur_Compte");
     $requete->execute();
     $resultat = $requete->get_result();
 
-    // Réaliser requête bénéficiaires
-    $requete3 = $conn->prepare("SELECT beneficiaire.* FROM beneficiaire WHERE beneficiaire.id_Client_Emetteur = '".$_SESSION['id_Client_Admin']."' ORDER BY libelle_Beneficiaire ASC");
-    $requete3->execute();
-    $resultat3 = $requete3->get_result();
+    // Réaliser requête bénéficiaires rattachés au client
+    $requete = $conn->prepare("SELECT beneficiaire.* FROM beneficiaire WHERE beneficiaire.id_Client_Emetteur = '".$_SESSION['id_Client_Admin']."'");
+    $requete->execute();
+    $beneficiaires = $requete->get_result();
+
+    // Réaliser requête opérations débitrice du client
+    $requete = $conn->prepare("SELECT operation.*, compte.* FROM operation, compte WHERE ((id_Compte = id_Emetteur_Operation) AND (operation.id_Emetteur_Operation IN (SELECT compte.id_Compte FROM compte WHERE compte.id_Detenteur_Compte = '".$_SESSION['id_Client_Admin']."')))");
+    $requete->execute();
+    $operations_emetteur = $requete->get_result();
+
+    // Réaliser requête opérations créditrice du client
+    $requete = $conn->prepare("SELECT operation.*, compte.* FROM operation, compte WHERE((id_Compte = id_Recepteur_Operation) AND (operation.id_Recepteur_Operation IN (SELECT compte.id_Compte FROM compte WHERE compte.id_Detenteur_Compte = '".$_SESSION['id_Client_Admin']."')))");
+    $requete->execute();
+    $operations_recepteur = $requete->get_result();
     
 ?>
 
@@ -43,18 +47,43 @@
 <html>
     <head>
         <script type="text/javascript" src="support/menu_EC.jsx"></script>
-        <title>ADMIN BankUP - <?php echo(strtoupper($client['nom_Client']).' '.$client['prenom_Client']; ?></title>
+        <script type="text/javascript" src="support/tri.jsx"></script>
+        <script type="text/javascript" src="support/ouvrir_fermer.jsx"></script>
+        <title>ADMIN BankUP - <?php echo(strtoupper($client['nom_Client']).' '.$client['prenom_Client']); ?></title>
     </head>
 
 
     <body>
-        <div id="contenu">
-            <button class="lienEC" onclick="openPage('informations', this, '#E80969')" id="defaultOpen">Informations</button>
-            <button class="lienEC" onclick="openPage('comptes', this, '#E80969')" >Comptes</button>
-            <button class="lienEC" onclick="openPage('operations', this, '#E80969')">Opérations</button>
-            <button class="lienEC" onclick="openPage('beneficiaires', this, '#E80969')">Bénéficiaires</button>
+        <div id="contenu" style="width:100%">
+            <div class="lienEC" style="width: 14%"> </div> 
+            <button class="lienEC" onclick="openPage('informations', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">informations</button>
+            <button class="lienEC" onclick="openPage('comptes', this, '#f1f1f1')"style="width: 18%" >comptes</button>
+            <button class="lienEC" onclick="openPage('operations', this, '#f1f1f1')" style="width: 18%">opérations</button>
+            <button class="lienEC" onclick="openPage('beneficiaires', this, '#f1f1f1')" style="width: 18%" >bénéficiaires</button>
+            <div class="lienEC" style="width: 14%"> </div>
         </div>
 
+        
+        <?php include('support/informations_EC.php'); ?>
+
+        <?php include('support/comptes_EC.php'); ?>
+
+        <?php include('support/operations_EC.php'); ?>
+
+        <?php include('support/beneficiaires_EC.php'); ?>
+    
+    </body>
+
+    <script>
+        document.addEventListener("load", sortTable(0));
+        document.addEventListener("load", sortTable(0));
+        document.getElementById("defaultOpen").click();
+    </script>
+
+</html>
+
+<?php /*
+<!--
             <div id="informations" class="item_EC">
                 <h1>Les informations de <?php echo($client['prenom_Client']." ".strtoupper($client['nom_Client'])); ?></h1>
                 <p>Vous pouvez modifier les informations de ce client. N'oubliez pas de valider.</p>
@@ -272,3 +301,5 @@
     </footer>
 
 </html>
+
+*/ ?>

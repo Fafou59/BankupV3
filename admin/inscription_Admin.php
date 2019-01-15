@@ -89,7 +89,6 @@
                                     <input type="text" name="ville" id="ville" size="10" minlength="0" maxlength="25" placeholder="Entrez votre ville" required />
                                 </td>
                             </tr>
-                            </tr>
                             <tr>
                                 <td><label for="email">Adresse mail</label> :</td>
                                 <td><input type="email" name="email" id="email" size="50" minlength="5" maxlength="70" placeholder="Entrez votre adresse mail" required /></td>
