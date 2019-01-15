@@ -1,5 +1,5 @@
 <div id="beneficiaires" class="item_EC">
-    <h1 style="font-variant: small-caps;">vos bénéficiaires</h1>
+    <h1>vos bénéficiaires</h1>
     <p style="font-size: 15px">Vous trouverez ci-dessous la liste de vos bénéficiaires. Vous pouvez ajouter un bénéficiaire avec le formulaire ci-dessous, et supprimer les bénéficiaires déjà enregistrés.</p>
     <hr>
     <table>
