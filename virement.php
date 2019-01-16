@@ -43,10 +43,10 @@
             <?php
                 // Si données non renseignées
                 if ((!isset($_POST["emetteur"], $_POST['recepteur'], $_POST['montant']))) { ?>
-                    <h1>Faire un virement</h1>
-                    <p>Merci de compléter les informations ci-dessous pour réaliser votre virement.</p>
-                    <hr>
-                    <form class="formulaire" method="post" action="virement.php" style="border:1px solid #ccc">
+                    <form class="formulaire" method="post" action="virement.php">
+                        <h1>Faire un virement</h1>
+                        <p>Merci de compléter les informations ci-dessous pour réaliser votre virement.</p>
+                        <hr>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>

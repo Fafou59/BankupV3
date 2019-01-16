@@ -22,9 +22,9 @@
         <div class="item_EC" style="display: block">
             <?php
                 // Vérifier si données disponibles
-                if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'], $_SESSION['id'])) {
+                if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'])) {
 
-                    // Réaliser requête compte bénéficiaire à création
+                    // Réaliser requête compte bénéficiaire à créer
                     $requete = $conn->prepare("SELECT compte.* FROM compte WHERE '".$_POST['iban']."' = compte.iban_Compte");
                     $requete->execute();
                     $resultat = $requete->get_result();
@@ -68,6 +68,7 @@
                                 // Réaliser requête pour ajout du bénéficiaire
                                 $sql = "INSERT INTO beneficiaire (id_Compte_Beneficiaire, id_Client_Emetteur, libelle_Beneficiaire, validite_Beneficiaire)
                                 VALUES ('".$compte['id_Compte']."', '".$_SESSION['id']."', '".$_POST['libelle_Beneficiaire']."', 0)";
+                                // Si requête effectuée
                                 if ($conn->query($sql) === TRUE) { ?>
                                     <!-- Redirection après 3 secondes -->
                                     <meta http-equiv="Refresh" content="3;URL=espace_Client.php">

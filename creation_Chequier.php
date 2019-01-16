@@ -58,7 +58,8 @@
                             </tr>
                         </table>
                         <hr>
-                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p>
+                        <?php
                     }
                 // Si pas de chéquier existant, ajout du nouveau
                 } else {
