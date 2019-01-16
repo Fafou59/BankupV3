@@ -47,6 +47,7 @@
             <p style="font-size: 15px; margin-top: 15px;margin-bottom: 15px;">Vous pouvez consulter la liste des clients de votre agence et accéder à leur espace client. Vous pouvez également créer un nouveau client.</p>
             <hr>
             <button type="submit" class="bouton_Ouvrir" onclick="location.href='inscription_Admin.php'"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">Créer un client</button><br><br><br>
+            <br>
             <hr>
             <table id='liste_Operations' width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:50px;">
                 <tr>
@@ -107,10 +108,10 @@
                             echo($beneficiaire_detail['prenom_Client'].' '.$beneficiaire_detail['nom_Client']); ?>
                         </td>
                         <td><form method="post" action="validation_Beneficiaire.php">
-                            <button name="id_Beneficiaire" type="submit" class="bouton_Ajout" value="<?php echo ($beneficiaire[0]) ?>">Valider</button>
+                            <button name="id_Beneficiaire_Ajout" type="submit" class="bouton_Ajout" value="<?php echo ($beneficiaire[0]) ?>">Valider</button>
                         </form></td>
-                        <td><form method="post" action="suppression_Beneficiaire.php">
-                            <button name="id_Beneficiaire" type="submit" class="bouton_Suppression" value="<?php echo ($beneficiaire[0]) ?>">Supprimer</button>
+                        <td><form method="post" action="validation_Beneficiaire.php">
+                            <button name="id_Beneficiaire_Suppression" type="submit" class="bouton_Suppression" value="<?php echo ($beneficiaire[0]) ?>">Supprimer</button>
                         </form></td>
                     </tr>
                 <?php } ?>
@@ -126,7 +127,7 @@
                     <th style="width:20%">Client émetteur</th>
                     <th style="width:34%">Compte bénéficiaire (IBAN)</th>
                     <th style="width:20%">Détenteur compte</th>
-                    <th style="width:10%">Montant du chèque</th>
+                    <th style="width:10%">Montant</th>
                     <th style="width:8%"></th>
                     <th style="width:8%"></th>
                 </tr>

@@ -23,16 +23,16 @@
     </head>
 
     <body>
-        <?php
-            // Si données renseignées
-            if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'])) {
-                // Requête compte correspondant à l'iban renseigné
-                $requete = $conn->prepare("SELECT compte.* FROM compte WHERE '".$_POST['iban']."' = compte.iban_Compte");
-                $requete->execute();
-                $resultat = $requete->get_result();
-                $compte = $resultat->fetch_assoc(); ?>
-                <div class="item_EC" style="display: block">
-                    <?php
+        <div class="item_EC" style="display: block">
+            <?php
+                // Si données renseignées
+                if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'])) {
+                    // Requête compte correspondant à l'iban renseigné
+                    $requete = $conn->prepare("SELECT compte.* FROM compte WHERE '".$_POST['iban']."' = compte.iban_Compte");
+                    $requete->execute();
+                    $resultat = $requete->get_result();
+                    $compte = $resultat->fetch_assoc();
+
                     // Si un compte a été trouvé
                     if (isset($compte)) {
                         // Vérification si le compte appartient au client
@@ -41,7 +41,7 @@
                             <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                                 <table>
                                     <tr>
-                                        <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
+                                        <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
                                         <td><h1 style="font-variant: small-caps;">Vous ne pouvez pas ajouter un compte du client comme bénéficiaire.</h1></td>	
                                     </tr>
                                 </table>
@@ -50,18 +50,18 @@
                             <?php
                         // S'il n'appartient pas au client, vérification si bénéficiaire déjà enregistré
                         } else {
-                            $requete = $conn->prepare("SELECT beneficiaire.* FROM beneficiaire, compte WHERE '".$id_Emetteur."' = beneficiaire.id_Client_Emetteur AND '".$compte['id_Compte']."' = beneficiaire.id_Compte_Beneficiaire");
+                            $requete = $conn->prepare("SELECT beneficiaire.* FROM beneficiaire, compte WHERE '".$_SESSION['id_Client_Admin']."' = beneficiaire.id_Client_Emetteur AND '".$compte['id_Compte']."' = beneficiaire.id_Compte_Beneficiaire");
                             $requete->execute();
                             $resultat = $requete->get_result();
                             $beneficiaire = $resultat->fetch_assoc();
                             // Si bénéficiaire déjà enregistré
-                            if (($beneficiaire['id_Compte_Beneficiaire']==$compte['id_Compte']) AND ($beneficiaire['id_Client_Emetteur']==$id_Emetteur)) { ?>
+                            if (($beneficiaire['id_Compte_Beneficiaire']==$compte['id_Compte']) AND ($beneficiaire['id_Client_Emetteur']==$_SESSION['id_Client_Admin'])) { ?>
                                 <!-- Redirection après 3 secondes -->
                                 <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                                     <table>
                                         <tr>
                                             <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
-                                            <td><h1 style="font-variant: small-caps;">Le bénéficiaire est déjà enregistré.</h1></td>	
+                                            <td><h1 style="font-variant: small-caps;">Ce bénéficiaire est déjà enregistré.</h1></td>	
                                         </tr>
                                     </table>
                                     <hr>
@@ -69,7 +69,7 @@
                                 <?php
                             // Si nouveau bénéficiaire, création du bénéficiaire
                             } else {    
-                                // Réaliser requête
+                                // Réaliser requête pour ajout du bénéficiaire
                                 $sql = "INSERT INTO beneficiaire (id_Compte_Beneficiaire, id_Client_Emetteur, libelle_Beneficiaire, validite_Beneficiaire)
                                 VALUES ('".$compte['id_Compte']."', '".$_SESSION['id_Client_Admin']."', '".$_POST['libelle_Beneficiaire']."', 1)";
                                 // Si requête effectuée
@@ -112,12 +112,13 @@
                         <hr>
                         <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p>
                         <?php
-                    } ?>
-                </div><?php
+                    }
             // Si les données ne sont pas renseignées
             } else {
-                header('Location: mirroring_Admin.php');
+                header('Location: espace_Client.php');
             }
+        $conn->close();
         ?>
-    </body>
+    </div>
+</body>
 </html>
