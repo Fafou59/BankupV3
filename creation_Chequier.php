@@ -1,18 +1,19 @@
 <?php
+    // Ajout du menu admin
+    include('support/menu.php');
+
+    // Connexion à la bdd
+    include('support/connexion_bdd.php');
+
     // Vérifier si client connecté, sinon renvoie vers connexion
     if (!isset($_SESSION['id'])) {
         header("Location: connexion.php");
     }
-    // Ajout du menu
-    include('support/menu.php');
 
     // Vérification si donnée disponible
     if (!isset($_POST['id_Compte'])) {
         header("Location: espace_Client.php");
     }
-
-    // Connexion à bdd
-    include('support/connexion_bdd.php');
 ?>
 
 <!DOCTYPE HTML>
@@ -34,13 +35,14 @@
                 if (isset($chequier)) {
                     $sql1 = "UPDATE chequier SET validite_Chequier = 0 WHERE chequier.id_Compte_Rattache = ".$_POST['id_Compte'];
                     $sql2 = "INSERT INTO chequier (id_Compte_Rattache, date_Emission_Chequier, validite_Chequier) VALUES ('".$_POST['id_Compte']."', NOW(), 1)";
+                    // Si requête réalisée
                     if ($conn->query($sql1) === TRUE AND ($conn->query($sql2) === TRUE)) { ?>
                         <!-- Redirection après 3 secondes -->
                         <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
                         <table>
                             <tr>
                                 <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
-                                <td><h1 style="font-variant: small-caps;">Votre virement a bien été effectué.</h1></td>	
+                                <td><h1 style="font-variant: small-caps;">Le chéquier a bien été créé et l'ancien archivé.</h1></td>	
                             </tr>
                         </table>
                         <hr>
@@ -61,6 +63,7 @@
                 // Si pas de chéquier existant, ajout du nouveau
                 } else {
                     $sql = "INSERT INTO chequier (id_Compte_Rattache, date_Emission_Chequier, validite_Chequier) VALUES ('".$_POST['id_Compte']."', NOW(), 1)";
+                    // Si requête réalisée
                     if ($conn->query($sql) === TRUE) {?>
                         <!-- Redirection après 3 secondes -->
                         <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
@@ -85,8 +88,8 @@
                         <hr>
                         <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
                     }
-                    $conn->close();
                 }
+                $conn->close();
             ?>
         </div>
     </body>

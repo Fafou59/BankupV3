@@ -3,8 +3,21 @@
     if (isset($_SESSION['id'])) {
         header("Location: espace_Client.php");
     }
+
     // Ajout du menu
     include('support/menu.php');
+
+    // Connexion à la bdd
+    include('support/connexion_bdd.php');
+
+    // Recherche d'un client avec la mmême adresse mail
+    if (isset($_POST['email'])) {
+        // Réaliser requête client & agence rattaché à l'id client
+        $requete = $conn->prepare("SELECT client.adresse_Mail_Client FROM client WHERE client.adresse_Mail_Client = '".$_POST['email']."'");
+        $requete->execute();
+        $resultat = $requete->get_result();
+        $client = $resultat->fetch_assoc();
+    }
 ?>
 
 <!DOCTYPE HTML>
@@ -14,13 +27,20 @@
     </head>
 
     <body>
-    <div class="item_EC_Connexion_Inscription" style="display:block">
         <?php
             // Si les données ne sont pas entrées
-            if (!isset($_POST['civilite'], $_POST["mdp"], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>
-                <form class="formulaire_Connexion_Inscription" method="post" action="inscription.php">
+            if (isset($client) OR !isset($_POST['civilite'], $_POST["mdp"], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>
+                <div class="item_EC_Connexion_Inscription" style="display:block">
+                    <form class="formulaire_Connexion_Inscription" method="post" action="inscription.php">
                         <h1>création de votre profil</h1>
                         <p>Merci de compléter les informations ci-dessous.</p>
+                        <?php 
+                            if (isset($client)) { ?>
+                                <p style="color:red">Un profil avec la même adresse mail existe déjà. Cliquez sur le bouton pour vous connecter :</p>
+                                <button type="button" onclick="location.href='connexion.php'" class="bouton_Annuler" >Connexion</button>
+                                <br><br><br>
+                            <?php }
+                        ?>
                         <br>
                         <hr>
                         <br>
@@ -108,7 +128,8 @@
                         <div class="bouton_Form">
                             <button type="submit" class="bouton_Valider_Connexion_Inscription">Valider</button>
                         </div>
-                </form> <?php
+                    </form>
+                </div><?php
             // Si les données sont disponibles
             } else {
                 // Adaptation de la donnée civilité
@@ -136,9 +157,6 @@
                     $agence = 2;
                 }
 
-                // Connexion à la bdd
-                include('support/connexion_bdd.php');
-
                 // Exécution de la requête pour ajouter le client
                 $sql = "INSERT INTO client (civilite_Client, nom_Client, prenom_Client, date_Naissance_Client, adresse_Mail_Client, telephone_Client, num_Voie_Client, voie_Client, code_Postal_Client, ville_Client, mdp_Client, agence_Client, pays_Client)
                 VALUES ('".$civilite."', '".$nom."', '".$prenom."', '".$date_Naissance."', '".$email."', '".$telephone."', '".$numero_Voie."', '".$voie."', '".$code_Postal."', '".$ville."', '".$mdp."','".$agence."','".$pays."')";
@@ -147,7 +165,7 @@
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
                     <meta http-equiv="Refresh" content="3;URL=connexion.php">
-                    <div class="item_EC" style="display: block">                    
+                    <div class="item_EC" style="display: block">
                         <table>
                             <tr>
                                 <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>

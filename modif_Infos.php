@@ -18,7 +18,7 @@
         <div class="item_EC" style="display: block">
             <?php
                 // Si données non renseignées, renvoie sur espace client
-                if ((!isset($_POST['telephone'])) OR (!isset($_POST['email']))) {
+                if (!isset($_POST['telephone'], $_POST['email'])) {
                     header('Location: espace_Client.php');
                 // Si données renseignées
                 } else {

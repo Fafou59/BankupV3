@@ -132,9 +132,20 @@
                             <hr>
                             <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
                         }
-                    $conn->close();
+                    } else { ?>
+                        <!-- Redirection après 3 secondes -->
+                        <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
+                        <table>
+                            <tr>
+                                <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><h1 style="font-variant: small-caps;">Oups... Le solde de ce compte est insuffisant !</h1></td>	
+                            </tr>
+                        </table>
+                        <hr>
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
                     }
                 }
+                $conn->close();
             ?>
         </div>
     </body>

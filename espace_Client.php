@@ -48,29 +48,35 @@
 
 
     <body>
+        <!-- Menu de l'espace client, affichage quand clic, informations ouvert par défaut -->
         <div id="contenu" style="width:100%">
             <div class="lienEC" style="width: 14%"> </div> 
-            <button class="lienEC" onclick="openPage('informations', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">vos informations</button>
-            <button class="lienEC" onclick="openPage('comptes', this, '#f1f1f1')"style="width: 18%" >vos comptes</button>
-            <button class="lienEC" onclick="openPage('operations', this, '#f1f1f1')" style="width: 18%">vos opérations</button>
-            <button class="lienEC" onclick="openPage('beneficiaires', this, '#f1f1f1')" style="width: 18%" >vos bénéficiaires</button>
+            <button class="lienEC" onclick="ouvrir_onglet('informations', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">vos informations</button>
+            <button class="lienEC" onclick="ouvrir_onglet('comptes', this, '#f1f1f1')"style="width: 18%" >vos comptes</button>
+            <button class="lienEC" onclick="ouvrir_onglet('operations', this, '#f1f1f1')" style="width: 18%">vos opérations</button>
+            <button class="lienEC" onclick="ouvrir_onglet('beneficiaires', this, '#f1f1f1')" style="width: 18%" >vos bénéficiaires</button>
             <div class="lienEC" style="width: 14%"> </div>
         </div>
 
+        <!-- Récupération de l'onglet informations -->
         <?php include('support/informations_EC.php'); ?>
 
+        <!-- Récupération de l'onglet comptes -->
         <?php include('support/comptes_EC.php'); ?>
 
+        <!-- Récupération de l'onglet opérations -->
         <?php include('support/operations_EC.php'); ?>
 
+        <!-- Récupération de l'onglet bénéficiaires -->
         <?php include('support/beneficiaires_EC.php'); ?>
     
     </body>
 
     <script>
-        document.addEventListener("load", sortTable(0));
-        document.addEventListener("load", sortTable(0));
-        document.getElementById("defaultOpen").click();
+        //Exécution d'action de base à l'ouverture de la page
+        document.addEventListener("load", trier_Table(0)); // Lister les opérations par date (ascendant)
+        document.addEventListener("load", trier_Table(0)); // Lister les opérations par date (descendant)
+        document.getElementById("defaultOpen").click(); // Ouvrir l'onglet informations par défaut
     </script>
 
 </html>

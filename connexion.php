@@ -1,4 +1,4 @@
-    <?php
+<?php
     // Ajout du menu
     include('support/menu.php');
 
@@ -37,7 +37,6 @@
                     <h1>connexion à votre espace client</h1>
                     <p>Merci de renseigner vos identifiants de connexion.</p>
                     <p style="color:red">Nom d'utilisateur ou mot de passe érroné, veuillez réessayer.</p>
-                    <br>
                     <br>  
                     <form class="formulaire_Connexion_Inscription" method="post" action="connexion.php">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -51,7 +50,7 @@
                             </tr>
                         </table>
                         <div class="bouton_Form">
-                            <button type="submit" class="bouton_Valider_Connexion_Insciption">Se connecter</button>
+                            <button type="submit" class="bouton_Valider_Connexion_Inscription">Se connecter</button>
                          </div>
                     </form>
                 <?php }
@@ -73,7 +72,7 @@
                         </tr>
                     </table>
                     <div class="bouton_Form">
-                    <button type="submit" class="bouton_Valider_Connexion_Inscription">Se connecter</button>
+                        <button type="submit" class="bouton_Valider_Connexion_Inscription">Se connecter</button>
                     </div>
                 </form>
             <?php } ?>

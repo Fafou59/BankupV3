@@ -1,11 +1,16 @@
 <?php
+    // Ajout du menu
+    include('support/menu.php');
+
+    // Connexion à la bdd
+    include('support/connexion_bdd.php');
+
     // Vérifier si client connecté, sinon renvoie vers connexion
     if (!isset($_SESSION['id'])) {
         header("Location: connexion.php");
     }
-    // AJout du menu
-    include('support/menu.php');
 ?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -18,8 +23,6 @@
             <?php
                 // Vérifier si données disponibles
                 if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'], $_SESSION['id'])) {
-                    // Connexion à la bdd
-                    include('support/connexion_bdd.php');
 
                     // Réaliser requête compte bénéficiaire à création
                     $requete = $conn->prepare("SELECT compte.* FROM compte WHERE '".$_POST['iban']."' = compte.iban_Compte");
@@ -92,22 +95,23 @@
                             }
                         }
                     // Si compte bénéficiaire non trouvé
-                    } else ?>
-                    <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
-                    <table>
-                        <tr>
-                            <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
-                            <td><h1 style="font-variant: small-caps;">L'IBAN renseigné semble eronné. Veuillez réessayer.</h1></td>	
-                        </tr>
-                    </table>
-                    <hr>
-                    <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
-                }
-                // Si manque données
+                    } else { ?>
+                        <!-- Redirection après 3 secondes -->
+                        <meta http-equiv="Refresh" content="3;URL=espace_Client.php">
+                        <table>
+                            <tr>
+                                <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
+                                <td><h1 style="font-variant: small-caps;">L'IBAN renseigné semble eronné. Veuillez réessayer.</h1></td>	
+                            </tr>
+                        </table>
+                        <hr>
+                        <p style="font-size: 18px; padding-left: 110px;">Vous allez être redirigé vers l'espace client.</p> <?php
+                    }
+                // Si données manquantes
                 } else {
                     header('Location: espace_Client.php');
                 }
+            $conn->close();
             ?>
         </div>
     </body>
