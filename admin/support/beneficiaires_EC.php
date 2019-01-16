@@ -24,7 +24,7 @@
                                 <td><input type="text" name="iban" id="iban" size="27" minlength="27" maxlength="27" placeholder="Entrez l'IBAN du bénéficiaire" required /></td>   
                             </tr>
                         </table>
-                    </div>
+                    </div><br>
                     <div class="bouton_Form">
                         <button type="submit" class="bouton_Ouvrir"> <img src="images/add-plus-button.png" style="width:25px; margin-right:20px;"> Ajouter</button>
                     </div>
@@ -57,8 +57,8 @@
                             <?php 
                                 if ($beneficiaire[4]==1) { ?>
                                     <td style="width:20%">Actif</td>
-                                    <td style="width:20%"><form method="post" action="virement_Admin.php">
-                                        <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>">Faire virement</button><br /><br />
+                                    <td style="width:20%"><form method="post" action="virement.php">
+                                        <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/add-plus-button.png" style="width:15px; margin-right:10px;">Virement</button><br /><br />
                                     </form style="height: 40px;"></td>
                                 <?php } else { ?>
                                     <td style="width:20%">En attente</td>

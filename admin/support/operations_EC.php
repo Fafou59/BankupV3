@@ -7,11 +7,11 @@
     <hr>
     <table id='liste_Operations' width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:50px;">
         <tr>
-            <th style="width:25%" onclick="sortTable(0)">Date</th>
-            <th style="width:15%" onclick="sortTable(1)">Type opération</th>
-            <th style="width:32%" onclick="sortTable(2)">Compte</th>
-            <th style="width:15%" onclick="sortTable(3)">Montant</th>
-            <th style="width:13%" onclick="sortTable(4)">Statut</th>
+            <th style="width:25%" onclick="trier_Table(0)">Date</th>
+            <th style="width:15%" onclick="trier_Table(1)">Type opération</th>
+            <th style="width:32%" onclick="trier_Table(2)">Compte</th>
+            <th style="width:15%" onclick="trier_Table(3)">Montant</th>
+            <th style="width:13%" onclick="trier_Table(4)">Statut</th>
         </tr>
         <?php while($operation = $operations_emetteur->fetch_row()) { ?>
             <tr>

@@ -1,53 +1,47 @@
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+function trier_Table(n) {
+  var table, rows, inverser, i, x, y, inversement, dir, nombre_Inversement = 0;
   table = document.getElementById("liste_Operations");
-  switching = true;
-  // Set the sorting direction to ascending:
+  inverser = true;
+  // Direction de l'inversement en ascendant
   dir = "asc";
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
+  // Boucle pour inverser jusqu'à ce qu'il n'y ait plus d'inversement
+  while (inverser) {
+    // pas d'inversement
+    inverser = false;
     rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
+    // Boucle sur toutes les lignes sauf la première (th)
     for (i = 1; i < (rows.length - 1); i++) {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
+      // De base, pas d'inversement
+      inversement = false;
+      // Comparer les éléments d'une même colonne pour deux lignes
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
+      // Regarder si les élements devraient s'inverser
       if (dir == "asc") {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
+          // Si oui, marquer l'inversement et casser la boucle
+          inversement = true;
           break;
         }
       } else if (dir == "desc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
+          // Si oui, marquer l'inversement et casser la boucle
+          inversement = true;
           break;
         }
       }
     }
-    if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
+    if (inversement) {
+      // Réalisation de l'inversement marqué
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      // Each time a switch is done, increase this count by 1:
-      switchcount ++;
+      inverser = true;
+      // Mise à jour du compte d'inversements
+      nombre_Inversement ++;
     } else {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
+      // Si pas d'inversement, changement du sens d'inversement et redémarrage de la boucle
+      if (nombre_Inversement == 0 && dir == "asc") {
         dir = "desc";
-        switching = true;
+        inverser = true;
       }
     }
   }
