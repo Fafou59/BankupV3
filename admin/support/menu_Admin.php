@@ -1,14 +1,6 @@
 <?php
     // Démarrage de la session
     session_start();
-    
-    // Récupération de l'adresse d'origine
-    if (isset($_SERVER["HTTP_REFERER"])) {
-        $origine = $_SERVER["HTTP_REFERER"];
-    }
-    else {
-        $origine = "";
-    }
 ?>
 
 <!DOCTYPE HTML>
