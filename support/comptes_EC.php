@@ -1,8 +1,9 @@
 <div id="comptes" class="item_EC">
     <h1 style="font-variant: small-caps;">vos comptes</h1>
-    <p style="font-size: 15px; margin-top: 15px;margin-bottom: 15px;">Vous pouvez consulter ci-dessous vos comptes. Vous pouvez également ouvrir un compte en cliquant sur le bouton situé en bas de la page.</p>
+    <p style="font-size: 15px; margin-top: 15px;margin-bottom: 15px;">Vous pouvez consulter ci-dessous vos comptes. Vous pouvez également ouvrir un compte en cliquant sur le bouton.</p>
     <hr>
     <button type="submit" class="bouton_Ouvrir" onclick="location.href='ouvrir_Compte.php'"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">Ouvrir un compte</button><br><br><br>
+    <br>
     <hr>
     <?php
         // Récupération de la liste des comptes
@@ -98,7 +99,7 @@
                             $requete->execute();
                             $resultat2 = $requete->get_result();
                             $chequier = $resultat2->fetch_assoc();
-                            $random_number = intval( "0" . rand(1,9) . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9) ); // random(ish) 5 digit int
+                            $random_number = intval( "0" . rand(1,9) . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9) );
                             
                             // Si chéquier rattaché au compte, affichage et proposition d'un nouveau
                             if ($chequier['id_Compte_Rattache']==$compte[0]) { ?>

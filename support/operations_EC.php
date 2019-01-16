@@ -3,7 +3,7 @@
     <p style="font-size: 15px">Retrouvez la liste de vos opérations passées. Vous pouvez également faire un virement un cliquant sur le bouton correspondant.</p>
     <hr>
     <button type="submit" class="bouton_Ouvrir" onclick="location.href='virement.php'"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">Faire un virement</button><br><br>
-    <br>
+    <br><br>
     <hr>
     <!-- Affichage de toutes les opérations du client -->
     <table id='liste_Operations' width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:50px;">
