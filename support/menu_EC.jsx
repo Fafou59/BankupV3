@@ -1,21 +1,22 @@
-  function openPage(pageName, elmnt, color) {
-    // Hide all elements with class="tabcontent" by default */
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("item_EC");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
+  // Lorsque clic sur un lien d'onglet
+  function ouvrir_onglet(nom_Onglet, onglet, couleur) {
+    // Cacher tous les contenus d'onglets par défaut
+    var i, contenu_Onglet, lien_Onglet;
+    contenu_Onglet = document.getElementsByClassName("item_EC");
+    for (i = 0; i < contenu_Onglet.length; i++) {
+      contenu_Onglet[i].style.display = "none";
     }
   
-    // Remove the background color of all tablinks/buttons
-    tablinks = document.getElementsByClassName("lienEC");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].style.backgroundColor = "";
+    // Retirer la couleur de fond de tous les liens d'onglet
+    lien_Onglet = document.getElementsByClassName("lienEC");
+    for (i = 0; i < lien_Onglet.length; i++) {
+      lien_Onglet[i].style.backgroundColor = "";
     }
   
-    // Show the specific tab content
-    document.getElementById(pageName).style.display = "block";
+    // Montrer l'onglet sur lequel le visiteur a cliqué
+    document.getElementById(nom_Onglet).style.display = "block";
   
-    // Add the specific color to the button used to open the tab content
-    elmnt.style.backgroundColor = color;
+    // Ajout couleur de fond pour le lien d'onglet sur lequel le visiteur a cliqué
+    onglet.style.backgroundColor = couleur;
   }
   

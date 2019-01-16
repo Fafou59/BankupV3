@@ -4,11 +4,12 @@
     <hr>
     <table>
         <tr>
+            <!-- Formulaire d'ajout d'un bénéficiaire -->
             <table class="onglet_Beneficiaire1">
                 <tr>   
-                <td style="color: white; padding-left:10px; padding-right:5px;"><h3 style="font-weight: normal; font-variant: small-caps;">ajouter un beneficiaire</h3></td>     
-                <td><button type="submit" class="bouton_Beneficiaire" style="background-color: #4caf50" onclick="toggle_div(this,'ajout_beneficiaire');"><img src="images/angle-arrow-down.png" style="width:25px"></button></td>
-            </tr>
+                    <td style="color: white; padding-left:10px; padding-right:5px;"><h3 style="font-weight: normal; font-variant: small-caps;">ajouter un beneficiaire</h3></td>     
+                    <td><button type="submit" class="bouton_Beneficiaire" style="background-color: #4caf50" onclick="toggle_div(this,'ajout_beneficiaire');"><img src="images/angle-arrow-down.png" style="width:25px"></button></td>
+                </tr>
             </table>
             <div id='ajout_beneficiaire' style="display:none;">
                 <p style="font-size: 15px">Merci de compléter les informations ci-dessous pour ajouter un bénéficiaire.</p>
@@ -24,7 +25,7 @@
                                 <td><input type="text" name="iban" id="iban" size="27" minlength="27" maxlength="27" placeholder="Entrez l'IBAN du bénéficiaire" required /></td>   
                             </tr>
                         </table>
-                    </div>
+                    </div><br>
                     <div class="bouton_Form">
                         <button type="submit" class="bouton_Ouvrir"> <img src="images/add-plus-button.png" style="width:25px; margin-right:20px;"> Ajouter</button>
                     </div>
@@ -33,6 +34,7 @@
         </tr>
         <br><hr><br>
         <tr>
+            <!-- Liste des bénéficiaires enregistrés -->
             <table class="onglet_Beneficiaire" style="margin-bottom:50px;">
                 <tr>
                     <td style="color: white; padding-left:10px; padding-right:5px;"><h3 style="font-weight: normal; font-variant: small-caps;">vos bénéficiares enregistrés</h3></td>
@@ -50,7 +52,9 @@
                         <th style="width:20%"></th>
                         <th style="width:10%"></th>
                     </tr>
-                    <?php while($beneficiaire = $beneficiaires->fetch_row()) { ?>
+                    <?php
+                    // Récupération de tous les bénéficiaires du client
+                    while($beneficiaire = $beneficiaires->fetch_row()) { ?>
                         <tr>
                             <td style="width:15%"><?php echo($i) ?></td>
                             <td style="width:35%"><?php echo($beneficiaire[3]) ?></td>

@@ -1,4 +1,5 @@
 <?php
+    // Définition des paramètres de connexion à la bdd
     $serveur_bdd = "localhost";
     $utilisateur_bdd = "root";
     $mdp_bdd = "";

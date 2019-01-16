@@ -3,6 +3,8 @@
         <h1 style="font-variant: small-caps;">vos informations</h1>
         <p style="font-size: 15px">Vous pouvez modifier vos informations. N'oubliez pas de valider.</p>
         <hr>
+        <!-- Affichage de toutes les informations du client,
+        possibilité de modifier adresse mail et téléphone -->
         <form method="post" action="modif_Infos.php" >
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
@@ -57,17 +59,18 @@
                 </tr>
                 <tr>
                     <td><label for="email">adresse mail</label> :</td>
-                    <td><input type="email" name="email" id="email" size="50" minlength="5" maxlength="70" placeholder="Entrez votre adresse mail" value="<?php echo ($client['adresse_Mail_Client']) ?>" /></td>
+                    <td><input type="email" name="email" id="email" size="50" minlength="5" maxlength="70" placeholder="Entrez votre adresse mail" value="<?php echo ($client['adresse_Mail_Client']) ?>" required /></td>
                 </tr>
                 <tr>
                     <td><label for="telephone">téléphone</label> :</td>
-                    <td><input type="text" name="telephone" id="telephone" size="10" minlength="10" maxlength="10" placeholder="Entrez votre numéro de téléphone" value="<?php echo ($client['telephone_Client']) ?>" /></td>
+                    <td><input type="text" name="telephone" id="telephone" size="10" minlength="10" maxlength="10" placeholder="Entrez votre numéro de téléphone" value="<?php echo ($client['telephone_Client']) ?>" required /></td>
                 </tr>
             </table><br>
         <button type="submit" class="bouton_Valider"><img src="images/pencil.png" style="width:25px; margin-right:20px;">Valider les modifications</button>
     <br>    
     </form>
         <br><br><hr>
+        <!-- Affichage de l'agence du client -->
         <h1 style="font-variant: small-caps; margin-bottom: 0px;">votre agence</h1>
         <p>Vous trouverez ci-dessous les informations sur votre agence de rattachement.</p>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">

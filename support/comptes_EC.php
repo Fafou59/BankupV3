@@ -4,7 +4,8 @@
     <hr>
     <button type="submit" class="bouton_Ouvrir" onclick="location.href='ouvrir_Compte.php'"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">Ouvrir un compte</button><br><br><br>
     <hr>
-    <?php 
+    <?php
+        // Récupération de la liste des comptes
         $i = 1;
         while($compte = $resultat->fetch_row())  { ?>
             <table class="onglet_compte" style="background-color: #E80969; width:100%; margin-bottom:50px;">
@@ -40,8 +41,9 @@
                     </tr>
                 </table>
                 <?php
+                // En cas de compte courant, gérer les CB et chéquiers
                 if ($compte[2]=="courant") {
-                    //CB
+                    // Requête récupération de la CB
                     $requete = $conn->prepare("SELECT cb.* FROM cb WHERE cb.id_Compte_Rattache = ".$compte[0]);
                     $requete->execute();
                     $resultat2 = $requete->get_result();
@@ -51,6 +53,7 @@
                     <table>
                         <tr>
                             <?php
+                            // Si CB rattaché au compte, affichage
                             if ($cb['id_Compte_Rattache']==$compte[0]) { ?>
                                 <table class="onglet_Paiement">
                                     <tr>
@@ -73,8 +76,9 @@
                                             <td style="padding-left:40px;"><?php echo $cb['date_Expiration_Cb'] ?></td>
                                         </tr>
                                     </table>
-                                </div>
-                            <?php } else { ?>
+                                </div><?php
+                            // Si pas de CB, proposition d'ajout
+                            } else { ?>
                                 <table>
                                     <tr>
                                         <p style="padding-left:30px; padding-bottom:10px;">Vous n'avez pas encore de carte.</p>
@@ -89,13 +93,14 @@
                         </tr>
                         <tr>
                             <?php
-                            //Chéquier
+                            // Requête récupération chéquier
                             $requete = $conn->prepare("SELECT chequier.* FROM chequier WHERE chequier.id_Compte_Rattache = ".$compte[0]." AND validite_Chequier = 1");
                             $requete->execute();
                             $resultat2 = $requete->get_result();
                             $chequier = $resultat2->fetch_assoc();
                             $random_number = intval( "0" . rand(1,9) . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9) ); // random(ish) 5 digit int
-
+                            
+                            // Si chéquier rattaché au compte, affichage et proposition d'un nouveau
                             if ($chequier['id_Compte_Rattache']==$compte[0]) { ?>
                                 <table class="onglet_Paiement">
                                     <tr>
@@ -113,8 +118,9 @@
                                     <form method="post" action="creation_Chequier.php" style="height:80px">
                                         <button name="id_Compte" type="submit" class="bouton_Ouvrir" style="padding-left: 15px; margin-left: 30px;text-align:left;" value="<?php echo ($compte[0]) ?>"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">nouveau chéquier</button><br /><br />
                                     </form>
-                                </div>
-                            <?php } else { ?>
+                                </div><?php
+                            // Si pas de chéquier, bouton d'ajout
+                            } else { ?>
                                 <table style="padding-top:25px;">
                                     <tr>
                                         <p style="padding-left:30px; padding-bottom:10px;">Vous n'avez pas encore de chéquier.</p>
