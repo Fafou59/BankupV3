@@ -1,161 +1,288 @@
 ﻿    <<<Requêtes SQL pour la Base de Données BankUP>>>
 
 
+
 CREATE DATABASE bankup DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+
 
 
 CREATE TABLE agence
 (
+
     id_Agence INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     num_Voie_Agence INT(5) NOT NULL,
+
     voie_Agence VARCHAR(50) NOT NULL,
+
     code_Postal_Agence INT(5) NOT NULL,
+
     ville_Agence VARCHAR(25) NOT NULL
 );
 
+
+
 INSERT INTO `agence`(`num_Voie_Agence`, `voie_Agence`, `code_Postal_Agence`, `ville_Agence`)
-VALUES (12,"rue Georgé", 33000, "Bordeaux"), (42,"rue Gaston",75116,"Paris");
+
+VALUES 	(42,"rue Gaston",75116,"Paris"),
+
+        (12,"rue Jacques Chirac", 33000, "Bordeaux");
+	
+
+
 
 
 
 
 CREATE TABLE conseiller
 (
+
     id_Conseiller INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     nom_Conseiller VARCHAR(35) NOT NULL,
+
     prenom_Conseiller VARCHAR(35) NOT NULL,
+
     adresse_Mail_Conseiller VARCHAR(50) NOT NULL,
+
     telephone_Conseiller VARCHAR(12) NOT NULL,
+
     mdp_Conseiller VARCHAR(50) NOT NULL,
+
     agence_Conseiller INT NOT NULL,
+
     FOREIGN KEY (agence_Conseiller) REFERENCES agence(id_Agence)
 );
 
-INSERT INTO `conseiller`(`nom_Conseiller`, `prenom_Conseiller`, `adresse_Mail_Conseiller`, `telephone_Conseiller`, `mdp_Conseiller`, `agence_Conseiller`)
-VALUES ('Tabourin','Francis','ftabourin@bankup.fr','0123456789','743139240ff612253817440d98acb2ce7939fbb4',1), ('Vintin', 'Ludovic', 'lvintin@bankup.fr', '0516283746', 'd9f0fc8309fe4293a3e1953756f91b435ee639d5', 2);
+I
+
+NSERT INTO `conseiller`(`nom_Conseiller`, `prenom_Conseiller`, `adresse_Mail_Conseiller`, `telephone_Conseiller`, `mdp_Conseiller`, `agence_Conseiller`)
+
+VALUES 	('Tabourin','Francis','ftabourin@bankup.fr','0123456789','743139240ff612253817440d98acb2ce7939fbb4',1),
+	('Vintin', 'Ludovic', 'lvintin@bankup.fr', '0516283746', 'd9f0fc8309fe4293a3e1953756f91b435ee639d5', 2);
+
+
 
 
 CREATE TABLE client
 (
+
     id_Client INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+
     civilite_Client ENUM('H', 'F', 'A') NOT NULL,
+
     nom_Client VARCHAR(35) NOT NULL,
+
     prenom_Client VARCHAR(35) NOT NULL,
+
     date_Naissance_Client DATE NOT NULL,
+
     pays_Client VARCHAR(50) NOT NULL,
-    adresse_Mail_Client VARCHAR(50) NOT NULL,
+
+    adresse_Mail_Client VARCHAR(50) PRIMARY KEY NOT NULL,
+
     telephone_Client VARCHAR(12) NOT NULL,
+
     num_Voie_Client INT(5) NOT NULL,
+
     voie_Client VARCHAR(50) NOT NULL,
+
     code_Postal_Client INT(5) NOT NULL,
+
     ville_Client VARCHAR(25) NOT NULL,
+
     mdp_Client VARCHAR(50) NOT NULL,
+
     agence_Client INT NOT NULL,
+
     FOREIGN KEY (agence_Client) REFERENCES agence(id_Agence)
 );
 
+
+
+
 INSERT INTO `client`(`civilite_Client`, `nom_Client`, `prenom_Client`, `date_Naissance_Client`, `pays_Client`, `adresse_Mail_Client`, `telephone_Client`, `num_Voie_Client`, `voie_Client`, `code_Postal_Client`, `ville_Client`, `mdp_Client`, `agence_Client`)
+
 VALUES  ('H','Lesage','Fabien','1996-02-17','FR','fabien.lesage59@gmail.com','0647501579',42,'rue Pergolèse',75116,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
+
         ('H','Masse','Hugo','1991-12-08','FR','hugomasse@test.fr','0678787878',1,'rue de la Paix',75008,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
+
         ('F','Vandenbooder','Justine','1998-02-07','FR','vdnjustine@test.fr','0647501500',4,'avenue Masrot',10000,'Troys','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+
         ('H','Enchanté','Carlos','1933-10-19','FR','carlosenchante@test.fr','0688501579',105,'rue Jules Verne',59380,'Templeuve','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+
         ('F','Noissom','Asile','1986-01-29','FR','asilenoissom@test.fr','0752525252',3,'rue du Projet Web',20000,'Ajaccio','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2);
+
+
 
 
 CREATE TABLE compte
 (
+
     id_Compte INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     date_Ouverture_Compte DATE NOT NULL,
+
     type_Compte ENUM('courant', 'epargne') NOT NULL,
+
     solde_Compte INT NOT NULL,
+
     libelle_Compte VARCHAR(27) NOT NULL,
+
     iban_Compte VARCHAR(27) NOT NULL,
+
     bic_Compte VARCHAR(11) NOT NULL,
+
     autorisation_Decouvert_Compte INT NOT NULL,
+
     id_Detenteur_Compte INT NOT NULL,
+
     FOREIGN KEY (id_Detenteur_Compte) REFERENCES client(id_Client)
 );
 
+
+
 INSERT INTO `compte`(`date_Ouverture_Compte`, `type_Compte`, `solde_Compte`, `libelle_Compte`, `iban_Compte`, `bic_Compte`, `autorisation_Decouvert_Compte`, `id_Detenteur_Compte`)
+
 VALUES  ('2018-12-28','courant',587,'Compte courant Fabien','FR1111111111111111111111111','BKUPFRPP',50,1),
+
         ('2018-12-30','courant',12567,'Compte courant Justine','FR2222222222222222222222222','BKUPFRPP',0,3),
+
         ('2018-12-31','epargne',774,'PEL Fabien','FR1111111111741258741259634','BKUPFRPP',0,1),
+
         ('2019-01-02','courant',47,'Compte courant Asile','FR0101010101010101010101010','BKUPFRPP',0,5),
+
         ('2019-01-05','epargne',4110,'Livret A Hugo','FR7897897897897897897897897','BKUPFRPP',100,2),
+
         ('2019-01-10','courant',47,'Compte courant Hugo','FR1111122222333334444455555','BKUPFRPP',0,2);
+
+
 
 
 CREATE TABLE beneficiaire
 (
+
     id_Beneficiaire INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     id_Compte_Beneficiaire INT NOT NULL,
+
     id_Client_Emetteur INT NOT NULL,
+
     libelle_Beneficiaire VARCHAR(30),
+
     validite_Beneficiaire BOOLEAN NOT NULL,
+
     FOREIGN KEY (id_Compte_Beneficiaire) REFERENCES compte(id_Compte),
+
     FOREIGN KEY (id_Client_Emetteur) REFERENCES client(id_Client)
 );
 
+
+
 INSERT INTO `beneficiaire`(`id_Compte_Beneficiaire`, `id_Client_Emetteur`, `libelle_Beneficiaire`, `validite_Beneficiaire`)
+
 VALUES  (1,2,'Compte Fabien',1),
+
         (2,1,'Justine VDB',1),
+
         (4,1,'Compte Asile Noissom',0),
+
         (6,1,'Compte Hugo',1),
+
         (6,3,'Compte Hugo Masse', 0);
+
+
 
 
 CREATE TABLE chequier
 (
+
     id_Chequier INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     id_Compte_Rattache INT NOT NULL,
+
     date_Emission_Chequier DATE NOT NULL,
+
     validite_Chequier BOOLEAN NOT NULL,
+
     FOREIGN KEY (id_Compte_Rattache) REFERENCES compte(id_Compte)
 );
 
+
+
 INSERT INTO `chequier`(`id_Compte_Rattache`, `date_Emission_Chequier`, `validite_Chequier`)
+
 VALUES  (2,'2019-01-02',0),
+
         (2,'2019-01-12',1),
+
         (6,'2019-01-14',1);
+
+
 
 
 
 CREATE TABLE cb
 (
+
     id_Cb INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     id_Compte_Rattache INT NOT NULL,
+
     num_Cb VARCHAR(16) NOT NULL,
+
     cryptogramme_Cb INT(3) NOT NULL,
+
     date_Expiration_Cb DATE NOT NULL,
+
     FOREIGN KEY (id_Compte_Rattache) REFERENCES compte(id_Compte)
 );
 
+
+
 INSERT INTO `cb`(`id_Compte_Rattache`, `num_Cb`, `cryptogramme_Cb`, `date_Expiration_Cb`)
+
 VALUES  (1,'4987471258881473',771,'2022-05-10'),
+
         (4,'7841123574996963',011,'2021-12-25');
+
+
 
 
 CREATE TABLE operation
 (
+
     id_Operation INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+
     date_Operation DATETIME NOT NULL,
+
     id_Emetteur_Operation INT,
+
     id_Recepteur_Operation INT,
+
     type_Operation ENUM('CB', 'Virement', 'Chequier') NOT NULL,
+
     montant_Operation INT NOT NULL,
+
     id_CB_Operation INT,
+
     id_Chequier_Operation INT,
+
     validite_Operation BOOLEAN NOT NULL,
+
     FOREIGN KEY (id_Emetteur_Operation) REFERENCES compte(id_Compte),
+
     FOREIGN KEY (id_Recepteur_Operation) REFERENCES compte(id_Compte),
+
     FOREIGN KEY (id_CB_Operation) REFERENCES cb(id_Cb),
+
     FOREIGN KEY (id_Chequier_Operation) REFERENCES chequier(id_Chequier)
 );
 
+
+
 INSERT INTO `operation`(`date_Operation`, `id_Emetteur_Operation`, `id_Recepteur_Operation`, `type_Operation`, `montant_Operation`, `validite_Operation`)
+
 VALUES  (SYSDATE(), 6, 1, 'Virement', 87, 1),
+
         (SYSDATE(), 1, 2, 'Virement', 1000, 1);
-        
-
-
-        (SYSDATE(), 6, 1, 'Chequier', 123, 18, 0),
