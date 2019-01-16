@@ -36,10 +36,10 @@
 
     <body>
         <div id="contenu">
-            <button class="lienEC" onclick="openPage('clients', this, '#E80969')" id="defaultOpen">Liste des clients</button>
-            <button class="lienEC" onclick="openPage('beneficiaires', this, '#E80969')" >Bénéficiaires à valider</button>
-            <button class="lienEC" onclick="openPage('cheques', this, '#E80969')">Chèques à valider</button>
-            <button class="lienEC" onclick="openPage('autorisations', this, '#E80969')">Autorisations découvert</button>
+            <button class="lienEC" onclick="ouvrir_onglet('clients', this, '#E80969')" id="defaultOpen">Liste des clients</button>
+            <button class="lienEC" onclick="ouvrir_onglet('beneficiaires', this, '#E80969')" >Bénéficiaires à valider</button>
+            <button class="lienEC" onclick="ouvrir_onglet('cheques', this, '#E80969')">Chèques à valider</button>
+            <button class="lienEC" onclick="ouvrir_onglet('autorisations', this, '#E80969')">Autorisations découvert</button>
         </div>
 
         <div id="clients" class="item_EC">

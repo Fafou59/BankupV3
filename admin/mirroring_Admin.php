@@ -56,10 +56,10 @@
     <body>
         <div id="contenu" style="width:100%">
             <div class="lienEC" style="width: 14%"> </div> 
-            <button class="lienEC" onclick="openPage('informations', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">informations</button>
-            <button class="lienEC" onclick="openPage('comptes', this, '#f1f1f1')"style="width: 18%" >comptes</button>
-            <button class="lienEC" onclick="openPage('operations', this, '#f1f1f1')" style="width: 18%">opérations</button>
-            <button class="lienEC" onclick="openPage('beneficiaires', this, '#f1f1f1')" style="width: 18%" >bénéficiaires</button>
+            <button class="lienEC" onclick="ouvrir_onglet('informations', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">informations</button>
+            <button class="lienEC" onclick="ouvrir_onglet('comptes', this, '#f1f1f1')"style="width: 18%" >comptes</button>
+            <button class="lienEC" onclick="ouvrir_onglet('operations', this, '#f1f1f1')" style="width: 18%">opérations</button>
+            <button class="lienEC" onclick="ouvrir_onglet('beneficiaires', this, '#f1f1f1')" style="width: 18%" >bénéficiaires</button>
             <div class="lienEC" style="width: 14%"> </div>
         </div>
 
@@ -75,8 +75,8 @@
     </body>
 
     <script>
-        document.addEventListener("load", sortTable(0));
-        document.addEventListener("load", sortTable(0));
+        document.addEventListener("load", trier_Table(0));
+        document.addEventListener("load", trier_Table(0));
         document.getElementById("defaultOpen").click();
     </script>
 

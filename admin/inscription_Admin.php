@@ -6,6 +6,18 @@
     if (!isset($_SESSION['admin_Id'])) {
         header("Location: connexion_Admin.php");
     }
+
+    // Connexion à la bdd
+    include('support/connexion_bdd.php');
+
+    // Recherche d'un client avec la mmême adresse mail
+    if (isset($_POST['email'])) {
+        // Réaliser requête client & agence rattaché à l'id client
+        $requete = $conn->prepare("SELECT client.adresse_Mail_Client FROM client WHERE client.adresse_Mail_Client = '".$_POST['email']."'");
+        $requete->execute();
+        $resultat = $requete->get_result();
+        $client = $resultat->fetch_assoc();
+    }
 ?>
 
 <!DOCTYPE HTML>
@@ -17,12 +29,19 @@
     <body>
         <?php
             // Si les données ne sont pas entrées
-            if (!isset($_POST['civilite'], $_POST["mdp"], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>
-                <form class="formulaire" method="post" action="inscription_Admin.php" style="border:1px solid #ccc">
-                    <div class="container">
-                        <h1>Création de votre profil</h1>
+            if (isset($client) OR !isset($_POST['civilite'], $_POST["mdp"], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>
+                <div class="item_EC_Connexion_Inscription" style="display:block">
+                    <form class="formulaire_Connexion_Inscription" method="post" action="inscription_Admin.php">
+                        <h1>création du profil client</h1>
                         <p>Merci de compléter les informations ci-dessous.</p>
+                        <?php 
+                            if (isset($client)) { ?>
+                                <p style="color:red">Un profil avec la même adresse mail existe déjà.</p>
+                            <?php }
+                        ?>
+                        <br>
                         <hr>
+                        <br>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td><label for="civilite">Civilité*</label> :</td>
@@ -147,7 +166,7 @@
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
                     <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
-                    <div class="container">
+                    <div class="item_EC" style="display: block">
   				        <table>
                             <tr>
                                 <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
@@ -161,7 +180,7 @@
                 } else { ?>
                     <!-- Redirection après 3 secondes -->
                     <meta http-equiv="Refresh" content="3;URL=espace_Admin.php">
-                    <div class="container">
+                    <div class="item_EC" style="display: block">
   				        <table>
                             <tr>
                                 <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 60px; margin-left: 30px; margin-right: 30px;"></td>
