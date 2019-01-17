@@ -102,9 +102,9 @@
                     // Si solde suffisant pour effectuer le virement
                     if ($solde['solde_Compte'] - $_POST['montant'] >= $solde['autorisation_Decouvert_Compte']*-1) {
                         // Requête mise à jour solde compte débiteur
-                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['emetteur']."'";
+                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - '".$_POST['montant']."' WHERE compte.id_Compte = '".$_POST['emetteur']."'";
                         // Requête mise à jour solde compte créditeur
-                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['recepteur']."'";
+                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + '".$_POST['montant']."' WHERE compte.id_Compte = '".$_POST['recepteur']."'";
                         // Requête ajout opération
                         $sql2 = "INSERT INTO operation (date_Operation, id_Emetteur_Operation, id_Recepteur_Operation, type_Operation, montant_Operation, validite_Operation) VALUES (SYSDATE(), '".$_POST['emetteur']."', '".$_POST['recepteur']."', 'Virement', '".$_POST['montant']."', 1)";
                         // Si requêtes bien effectuées

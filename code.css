@@ -531,21 +531,25 @@ div#comptes.item_EC h3 {
   height : 50px;
 }
 
-div#operations.item_EC th, div#operations.item_EC td {
+.liste {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.liste th, .liste td {
   border-bottom: 1px solid #ddd;
   text-align: left; 
 }
 
-div#operations.item_EC th {
+.liste th {
   padding-bottom: 15px;
   padding-top: 35px;
 }
 
-div#operations.item_EC td {
+.liste td {
   padding-bottom: 5px;
   padding-top: 5px;
 }
-
 
 .ajout_Beneficiaire {
   border: 1px solid #ddd;
@@ -641,7 +645,7 @@ div#liste_Beneficiaire th, div#liste_Beneficiaire td {
       margin: 0px 0px 0px 0px;
     }
 
-    .bouton_Virement {
+    .bouton_Virement, .bouton_Profil {
       border-radius: 0px;
       width: 150px;
       height: 30px;
