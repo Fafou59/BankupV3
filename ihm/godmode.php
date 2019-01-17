@@ -132,11 +132,12 @@
                     </div>
                 </form>
                 <hr>
+            <!-- Données renseignées -->
             <?php } else {
                 // Si chèque, opération à valider sur espace Admin
                 if ($_POST['type_Operation'] == 'Chequier') {
                     // Requête pour obtenir les infos du compte rattaché au chéquier
-                    $requete = $conn->prepare("SELECT compte.id_Compte, compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte, chequier WHERE chequier.id_Chequier = ".$_POST['emetteur']." AND compte.id_compte = chequier.id_Compte_Rattache");
+                    $requete = $conn->prepare("SELECT compte.id_Compte, compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte, chequier WHERE chequier.id_Chequier = ".$_POST['emetteur']." AND compte.id_Compte = chequier.id_Compte_Rattache");
                     $requete->execute();
                     $resultat = $requete->get_result();
                     $compte = $resultat->fetch_assoc();
@@ -160,16 +161,17 @@
                     <?php }
                 // Si CB, opération directement validée et soldes des comptes mis à jour
                 } else {
+                if ($_POST['type_Operation'] == 'CB') {
                     // Requête pour obtenir les infos du compte rattaché à la CB
-                    $requete = $conn->prepare("SELECT compte.id_Compte, compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte, cb WHERE cb.id_Cb = ".$_POST['emetteur']." AND compte.id_compte = cb.id_Compte_Rattache");
+                    $requete = $conn->prepare("SELECT compte.id_Compte, compte.solde_Compte, compte.autorisation_Decouvert_Compte FROM compte, cb WHERE cb.id_Cb = ".$_POST['emetteur']." AND compte.id_Compte = cb.id_Compte_Rattache");
                     $requete->execute();
                     $resultat = $requete->get_result();
                     $compte = $resultat->fetch_assoc();
-                    // Si solde suffisant
+                    // Si solde suffisant pour effectuer le virement
                     if ($compte['solde_Compte'] - $_POST['montant'] >= $compte['autorisation_Decouvert_Compte']*-1) {
-                        // Ajout de l'opération et opérations sur les soldes des comptes
-                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['emetteur']."'";
-                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + ".$_POST['montant']." WHERE compte.id_Compte = '".$_POST['recepteur']."'";
+                        // Requêtes pour mettre à jour les soldes et l'opération
+                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - '".$_POST['montant']."' WHERE compte.id_Compte = '".$compte['id_Compte']."'";
+                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + '".$_POST['montant']."' WHERE compte.id_Compte = '".$_POST['recepteur']."'";
                         $sql2 = "INSERT INTO operation (date_Operation, id_Emetteur_Operation, id_Recepteur_Operation, type_Operation, montant_Operation, id_CB_Operation, validite_Operation) VALUES (SYSDATE(), '".$compte['id_Compte']."', '".$_POST['recepteur']."', '".$_POST['type_Operation']."', '".$_POST['montant']."', '".$_POST['emetteur']."', 1)";    
                         if ($conn->query($sql0) === TRUE AND $conn->query($sql1) === TRUE AND $conn->query($sql2)) { ?>
                             <meta http-equiv="Refresh" content="3;URL=godmode.php">
@@ -185,6 +187,7 @@
                         <meta http-equiv="Refresh" content="3;URL=godmode.php">
                         <h1>Solde insuffisant...</h1>
                     <?php }
+                }
                 }
             $conn->close();
             }
