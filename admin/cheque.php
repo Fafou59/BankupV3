@@ -31,8 +31,8 @@
                     // Si solde suffisant pour effectuer le virement
                     if ($cheque['solde_Compte'] - $cheque['montant_Operation'] >= $cheque['autorisation_Decouvert_Compte']*-1) {
                         // Requêtes pour mettre à jour les soldes et l'opération
-                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - ".$cheque['montant_Operation']." WHERE compte.id_Compte = '".$cheque['id_Emetteur_Operation']."'";
-                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + ".$cheque['montant_Operation']." WHERE compte.id_Compte = '".$cheque['id_Recepteur_Operation']."'";
+                        $sql0 = "UPDATE compte SET solde_Compte = solde_Compte - '".$cheque['montant_Operation']."' WHERE compte.id_Compte = '".$cheque['id_Emetteur_Operation']."'";
+                        $sql1 = "UPDATE compte SET solde_Compte = solde_Compte + '".$cheque['montant_Operation']."' WHERE compte.id_Compte = '".$cheque['id_Recepteur_Operation']."'";
                         $sql2 = "UPDATE operation SET operation.validite_Operation = 1 WHERE operation.id_Operation = '".$_POST['id_Cheque_Ajout']."'";
                         if ($conn->query($sql0) === TRUE AND $conn->query($sql1) === TRUE AND $conn->query($sql2)) { ?>
                             <!-- Redirection après 3 secondes -->

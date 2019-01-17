@@ -1,14 +1,19 @@
 <?php
+    // Ajout menu Admin
     include('support/menu_Admin.php');
 
+    // Connexion à la bdd
     include('support/connexion_bdd.php');
 
+    // Vérification si admin connecté
     if (!isset($_SESSION['admin_Id'])) {
         header("Location: connexion_Admin.php");
     }
-
+    
+    // Récupération de l'id client sélectionné si dispo et définition variable Session
     if (isset($_POST['id_Client'])) {
         $_SESSION['id_Client_Admin'] = $_POST['id_Client'];
+    // Sinon, vérifier qu'une variable session existe déjà et renvoyer vers espace admin si ce n'est pas le cas
     } else {
         if (!isset($_SESSION['id_Client_Admin'])) {
             header("Location: espace_Admin.php");
