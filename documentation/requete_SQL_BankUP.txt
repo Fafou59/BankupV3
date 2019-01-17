@@ -81,7 +81,7 @@ CREATE TABLE client
 
     adresse_Mail_Client VARCHAR(50) PRIMARY KEY NOT NULL,
 
-    telephone_Client VARCHAR(12) NOT NULL,
+    telephone_Client VARCHAR(10) NOT NULL,
 
     num_Voie_Client INT(5) NOT NULL,
 
