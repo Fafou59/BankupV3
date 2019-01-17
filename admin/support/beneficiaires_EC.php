@@ -46,8 +46,8 @@
                     <?php 
                     $i = 1; ?>
                     <tr>
-                        <th style="width:15%">n°</th>
-                        <th style="width:35%">libellé du bénéficiaire</th>
+                        <th style="width:10%">n°</th>
+                        <th style="width:40%">libellé du bénéficiaire</th>
                         <th style="width:20%">statut</th>
                         <th style="width:20%"></th>
                         <th style="width:10%"></th>
@@ -56,19 +56,19 @@
                     // Récupération de tous les bénéficiaires du client
                     while($beneficiaire = $beneficiaires->fetch_row()) { ?>
                         <tr>
-                            <td style="width:15%"><?php echo($i) ?></td>
-                            <td style="width:35%"><?php echo($beneficiaire[3]) ?></td>
+                            <td><?php echo($i) ?></td>
+                            <td><?php echo($beneficiaire[3]) ?></td>
                             <?php 
                                 if ($beneficiaire[4]==1) { ?>
-                                    <td style="width:20%">Actif</td>
-                                    <td style="width:20%"><form method="post" action="virement_Admin.php">
+                                    <td>Actif</td>
+                                    <td><form method="post" action="virement_Admin.php">
                                         <button name="id_Beneficiaire" type="submit" class="bouton_Virement" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/add-plus-button.png" style="width:15px; margin-right:10px;">Virement</button><br /><br />
                                     </form style="height: 40px;"></td>
                                 <?php } else { ?>
-                                    <td style="width:20%">En attente</td>
-                                    <td style="width:20%"></td>
+                                    <td>En attente</td>
+                                    <td></td>
                                 <?php } ?>
-                                    <td style="width:10%"><form method="post" action="suppression_Beneficiaire.php" style="height: 40px;">
+                                    <td><form method="post" action="suppression_Beneficiaire.php" style="height: 40px;">
                                         <button name="id_Beneficiaire" type="submit" class="bouton_Suppression" value="<?php echo ($beneficiaire[0]) ?>"><img src="images/bin.png" style="width:25px; margin-right:20px;"></button><br /><br />
                                     </form></td>  
                             <?php $i = $i + 1; ?>

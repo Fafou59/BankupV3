@@ -6,7 +6,7 @@
     <br><br>
     <hr>
     <!-- Affichage de toutes les opérations du client -->
-    <table id='liste_Operations' width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:50px;">
+    <table class="liste" id='liste_Operations' border="0" cellspacing="0" cellpadding="0">
         <tr>
             <th style="width:25%" onclick="trier_Table(0)">Date</th>
             <th style="width:15%" onclick="trier_Table(1)">Type opération</th>

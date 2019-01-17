@@ -16,20 +16,20 @@
     <header>
         <!-- Menu de navigation -->
         <nav>
-            <div id="blank"></div>
-            <div><a href="index.php" title="Accueil"><img id="logo_BankUP" src="images/logo2.png" onclick="location.href='espace_Admin.php'"alt="Accueil" /></a></div>
+            <div class="blank"></div>
+            <div><a href="index.php" title="Accueil"><img id="logo_BankUP" src="images/logo.png" onclick="location.href='index.php'"alt="Accueil" /></a></div>
             <div id="item_Menu"></div>
             <div id="item_Menu"></div>
-            <?php // Si l'administrateur est connecté, affichage boutons déconnexion et espace admin
+            <?php // Si l'admin est connecté, affichage boutons déconnexion et espace admin
             if (isset($_SESSION['admin_Id'])) { ?>
                 <div id="item_Menu"><button type="button" onclick="location.href='support/deconnexion_Admin.php'" title="Déconnexion" class="bouton_Connexion">DECONNEXION</button></div>
-                <div id="item_Menu"><button type="button" onclick="location.href='espace_Admin.php'" title="Espace Admin" class="bouton_Inscription">ESPACE ADMIN</button></div>
-            <?php // Si le visiteur n'est pas connecté, affichage bouton connexion
+                <div id="item_Menu"><button type="button" onclick="location.href='espace_Admin.php'" title="Espace Client" class="bouton_Inscription">ESPACE ADMIN</button></div>
+            <?php // Si l'admin n'est pas connecté, affichage bouton connexion
             } else {?>
-                <div id="blank"></div>
                 <div id="item_Menu"><button type="button" onclick="location.href='connexion_Admin.php'" title="Connexion" class="bouton_Connexion">CONNEXION</button></div>
+                <div id="item_Menu"></div>
            <?php } ?>
-                <div id="blank"></div>
+                <div class="blank"></div>
         </nav>
     </header>
 
