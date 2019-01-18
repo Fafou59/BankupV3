@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Si données renseignées
                 if (isset($_POST['libelle_Beneficiaire'], $_POST['iban'])) {

@@ -1,5 +1,5 @@
-<div id="comptes" class="item_EC">
-    <h1 style="font-variant: small-caps;">comptes de <?php echo($client['prenom_Client'].' '.$client['nom_Client']); ?></h1>
+<div id="comptes" class="item">
+    <h1 style="font-variant: small-caps; text-transform: lowercase;">comptes de <?php echo($client['prenom_Client'].' '.$client['nom_Client']); ?></h1>
     <p style="font-size: 15px; margin-top: 15px;margin-bottom: 15px;">Vous pouvez consulter ci-dessous les comptes du client. Vous pouvez également ouvrir un compte en cliquant sur le bouton.</p>
     <hr>
     <button type="submit" class="bouton_Ouvrir" onclick="location.href='ouvrir_Compte_Admin.php'"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">Ouvrir un compte</button><br><br><br>

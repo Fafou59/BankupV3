@@ -49,15 +49,15 @@
         <!-- Menu de l'espace admin, affichage quand clic, clients ouvert par défaut -->
         <div id="contenu" style="width:100%">
             <div class="lienEC" style="width: 14%"> </div>
-            <button class="lienEC" onclick="ouvrir_onglet('clients', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">Liste des clients</button>
-            <button class="lienEC" onclick="ouvrir_onglet('beneficiaires', this, '#f1f1f1')" style="width: 18%" >Bénéficiaires à valider</button>
-            <button class="lienEC" onclick="ouvrir_onglet('cheques', this, '#f1f1f1')" style="width: 18%">Chèques à valider</button>
-            <button class="lienEC" onclick="ouvrir_onglet('autorisations', this, '#f1f1f1')" style="width: 18%">Autorisations découvert</button>
+            <button class="lienEC" onclick="ouvrir_onglet('clients', this, '#f1f1f1')" style="width: 18%" id="defaultOpen">liste des clients</button>
+            <button class="lienEC" onclick="ouvrir_onglet('beneficiaires', this, '#f1f1f1')" style="width: 18%" >bénéficiaires à valider</button>
+            <button class="lienEC" onclick="ouvrir_onglet('cheques', this, '#f1f1f1')" style="width: 18%">chèques à valider</button>
+            <button class="lienEC" onclick="ouvrir_onglet('autorisations', this, '#f1f1f1')" style="width: 18%">autorisations découvert</button>
             <div class="lienEC" style="width: 14%"> </div>
         </div>
 
         <!-- Liste des clients de l'agence -->
-        <div id="clients" class="item_EC">
+        <div id="clients" class="item">
             <h1 style="font-variant: small-caps;">clients de votre agence</h1>
             <p style="font-size: 15px">Vous pouvez consulter la liste des clients de votre agence et accéder à leur espace client. Vous pouvez également créer un nouveau client.</p>
             <hr>
@@ -92,7 +92,7 @@
         </div>
 
         <!-- Liste des bénéficiaires à valider pour les clients de l'agence -->
-        <div id="beneficiaires" class="item_EC">
+        <div id="beneficiaires" class="item">
             <h1 style="font-variant: small-caps;">bénéficiaires à valider</h1>
             <p style="font-size: 15px">Vous pouvez consulter la liste demandes d'ajout de bénéficiaire en attente de validation. Vous pouvez accepter une demande ou la supprimer.</p>
             <hr>
@@ -137,7 +137,7 @@
         </div>
 
         <!-- Liste des chèques à valider pour les clients de l'agence -->
-        <div id="cheques" class="item_EC">
+        <div id="cheques" class="item">
             <h1 style="font-variant: small-caps;">chèques à valider</h1>
             <p style="font-size: 15px">Vous pouvez consulter la liste des chèques en attente de validation. Vous pouvez valider un chèque ou le supprimer.</p>
             <hr>
@@ -188,7 +188,7 @@
         </div>
 
         <!-- Liste des comptes des clients de l'agence -->
-        <div id="autorisations" class="item_EC">
+        <div id="autorisations" class="item">
         <h1 style="font-variant: small-caps;">comptes et autorisations découvert</h1>
             <p style="font-size: 15px">Vous pouvez consulter la liste des comptes et paramétrer les autorisations de découvert.</p>
             <hr>
@@ -218,7 +218,7 @@
                             echo($compte[1].'€');?>
                         </td>
                         <form method="post" action="autorisation_Decouvert.php" style="height: 40px;"><td>
-                            <input type="number" name="decouvert" id="decouvert" size="1" min="0" max="500" value="<?php echo($compte[4]) ?>" required />
+                            <input type="number" class="info_Requise" name="decouvert" id="decouvert" size="1" min="0" max="500" value="<?php echo($compte[4]) ?>" required />
                         </td>
                         <td>
                             <button name="id_Compte" type="submit" class="bouton_Suppression" value="<?php echo ($compte[0]) ?>"><img src="images/bouton_Ok.png" style="width:25px; margin-right:20px;"></button>

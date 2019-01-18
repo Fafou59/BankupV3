@@ -29,7 +29,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Vérification du solde et comparaison avec nouveau découvert autorisé
                 if ($_POST['decouvert'] < $compte['solde_Compte']*-1) { ?>

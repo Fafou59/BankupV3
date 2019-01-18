@@ -80,7 +80,7 @@
                             </tr>
                         </table><br>
                         <div class="bouton_Form">
-                            <button type="submit" name="type_Operation" value="CB" class="bouton_Valider">Valider l'opération par CB</button>
+                            <button type="submit" name="type_Operation" value="CB" class="bouton_Ouvrir">Valider l'opération par CB</button>
                         </div>
                     </div>
                 </form>
@@ -127,7 +127,7 @@
                             </tr>
                         </table><br>
                         <div class="bouton_Form">
-                            <button type="submit" name="type_Operation" value="Chequier" class="bouton_Valider">Valider l'opération par chèque</button>
+                            <button type="submit" name="type_Operation" value="Chequier" class="bouton_Ouvrir">Valider l'opération par chèque</button>
                         </div>
                     </div>
                 </form>

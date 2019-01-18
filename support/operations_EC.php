@@ -1,4 +1,4 @@
-<div id="operations" class="item_EC">
+<div id="operations" class="item">
     <h1 style="font-variant: small-caps;">vos opérations</h1>
     <p style="font-size: 15px">Retrouvez la liste de vos opérations passées. Vous pouvez également faire un virement un cliquant sur le bouton correspondant.</p>
     <hr>

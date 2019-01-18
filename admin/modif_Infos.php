@@ -32,7 +32,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Si données non renseignées, renvoie sur espace client
                 if (!isset($_POST['civilite'], $_POST['telephone'], $_POST['email'], $_POST['ville'], $_POST['code_Postal'], $_POST['voie'], $_POST['numero_Voie'], $_POST['nom'], $_POST['prenom'], $_POST['date_Naissance'], $_POST['pays'])) { ?>

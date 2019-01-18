@@ -127,7 +127,7 @@ hr {
 
 /* Mise en page des boutons Valider/Annuler*/
 
-.bouton_Valider {
+.bouton_Ouvrir {
   float: right;
   background-color: #4CAF50;
   margin-right: 14px;
@@ -200,7 +200,7 @@ hr {
   width: 25%;
 }
 
-.item_EC {
+.item {
   display: none;
   padding: 50px 20px;
   height: 100%;

@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Opérations sur compte si chèque validé
                 if (isset($_POST['id_Cheque_Ajout'])) {

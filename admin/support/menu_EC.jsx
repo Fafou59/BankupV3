@@ -2,7 +2,7 @@
   function ouvrir_onglet(nom_Onglet, onglet, couleur) {
     // Cacher tous les contenus d'onglets par défaut
     var i, contenu_Onglet, lien_Onglet;
-    contenu_Onglet = document.getElementsByClassName("item_EC");
+    contenu_Onglet = document.getElementsByClassName("item");
     for (i = 0; i < contenu_Onglet.length; i++) {
       contenu_Onglet[i].style.display = "none";
     }

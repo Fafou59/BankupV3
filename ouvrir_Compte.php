@@ -15,32 +15,33 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+
+        <div class="item" style="display: block">
             <?php
                 // Si données indisponibles, formulaire de création de compte
                 if ((!isset($_POST['type_Compte'])) OR (!isset($_POST["libelle_Compte"]))) { ?>
-                    <h1>Création de votre compte</h1>
+                    <h1>création de votre compte</h1>
                     <p>Merci de compléter les informations ci-dessous.</p>
                     <hr>
-                    <form method="post" action="ouvrir_Compte.php">
+                    <form method="post" style="margin-bottom:100px" action="ouvrir_Compte.php">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td><label for="type_Compte">Type de compte</label> :</td>
-                                <td id="type_Compte">
+                                <td><label for="type_Compte">type de compte</label> :</td>
+                                <td id="type_Compte" class="info_Requise" style="background:white">
                                     <input type="radio" name="type_Compte" value="epargne" id="epargne"  />
-                                    <label for="epargne">Compte Epargne</label>
+                                    <label for="epargne" style= "font-variant:normal; font-weight:normal; font-size:15px;">Compte Epargne</label>
                                     <input type="radio" name="type_Compte" value="courant" id="courant"  />
-                                    <label for="courant">Compte Courant</label>
+                                    <label for="courant" style= "font-variant:normal; font-weight:normal; font-size:15px;">Compte Courant</label>
                                 </td> 
                             </tr>
                             <tr>   
-                                <td><label for="libelle_Compte">Libellé du compte</label> :</td>
-                                <td><input type="text" name="libelle_Compte" id="libelle_Compte" size="20" minlength="2" maxlength="25" placeholder="Entrez le libellé du compte" /></td>   
+                                <td><label for="libelle_Compte">libellé du compte</label> :</td>
+                                <td><input type="text" class="info_Requise" name="libelle_Compte" id="libelle_Compte" size="20" minlength="2" maxlength="25" placeholder="Entrez le libellé du compte" /></td>   
                             </tr>
                         </table>
                         <div class="bouton_Form">
-                            <button type="button" onclick="location.href='espace_Client.php'" class="bouton_Annuler" >Retour</button>
-                            <button type="submit" class="bouton_Valider">Valider</button>
+                            <button type="button" onclick="location.href='espace_Client.php'" class="bouton_Ouvrir" Style="background-color:#555; margin-top: 50px; margin-left: 5px; float:right; width: 150px;" >Retour</button>
+                            <button type="submit" class="bouton_Ouvrir" style="margin-top: 50px; margin-right: 5px; float:right; width: 150px;">Valider</button>
                         </div>
                     </form>
                     <?php

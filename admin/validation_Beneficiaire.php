@@ -18,7 +18,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Si donnée disponible
                 if (isset($_POST['id_Beneficiaire_Ajout'])) {

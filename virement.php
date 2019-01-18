@@ -39,18 +39,19 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+
+        <div class="item" style="display: block; margin-top:60px;">
             <?php
                 // Si données non renseignées
                 if ((!isset($_POST["emetteur"], $_POST['recepteur'], $_POST['montant']))) { ?>
-                    <form class="formulaire" method="post" action="virement.php">
-                        <h1>Faire un virement</h1>
+                    <form class="formulaire" method="post" style="width:100%; margin:0px 0px 0px 0px; margin-bottom:100px;" action="virement.php">
+                        <h1>faire un virement</h1>
                         <p>Merci de compléter les informations ci-dessous pour réaliser votre virement.</p>
                         <hr>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td><label for="emetteur">Sélectionnez le compte à débiter :</label></td>
-                                <td><select name="emetteur" id="pays" required>
+                                <td><label for="emetteur">compte à débiter :</label></td>
+                                <td><select class="info_Requise" name="emetteur" id="pays" required>
                                     <?php
                                     while($compte2 = $comptes2->fetch_row())
                                     {
@@ -59,8 +60,8 @@
                                 </select></td>
                             </tr>
                             <tr>
-                                <td><label for="recepteur">Sélectionnez le bénéficiaire :</label></td>
-                                <td><select name="recepteur" id="pays" required>
+                                <td><label for="recepteur">bénéficiaire :</label></td>
+                                <td><select class="info_Requise" name="recepteur" id="pays" required>
                                     <?php
                                     echo("<optgroup label='Vos comptes'>");
                                     while($compte = $comptes->fetch_row())
@@ -81,13 +82,13 @@
                                 </select></td>
                             </tr>
                             <tr>
-                                <td><label for="montant">Indiquez le montant du virement :</label></td>
-                                <td><input name="montant" type="number" min="0" max="999999" required>€</td>
+                                <td><label for="montant">montant :</label></td>
+                                <td><input class="info_Requise" name="montant" type="number" min="0" max="999999" required>€</td>
                             </tr>
                         </table>
                         <div class="bouton_Form">
-                            <button type="button" onclick="location.href='espace_Client.php'" class="bouton_Annuler" >Retour</button>
-                            <button type="submit" class="bouton_Valider">Valider</button>
+                            <button type="button" onclick="location.href='espace_Client.php'" class="bouton_Ouvrir" Style="background-color:#555; margin-top: 50px; margin-left: 5px; float:right; width: 150px; margin-right:20px;">Retour</button>
+                            <button type="submit" class="bouton_Ouvrir" style="margin-top: 50px; margin-right: 5px; float:right; width: 150px;">Valider</button>
                         </div>
                     </form>
                     <?php

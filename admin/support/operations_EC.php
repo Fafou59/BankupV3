@@ -1,5 +1,5 @@
-<div id="operations" class="item_EC">
-    <h1 style="font-variant: small-caps;">opérations de <?php echo($client['prenom_Client'].' '.$client['nom_Client']); ?></h1>
+<div id="operations" class="item">
+    <h1 style="font-variant: small-caps; text-transform: lowercase;">opérations de <?php echo($client['prenom_Client'].' '.$client['nom_Client']); ?></h1>
     <p style="font-size: 15px">Retrouvez la liste de des opérations passées du client. Vous pouvez également faire un virement un cliquant sur le bouton correspondant.</p>
     <hr>
     <button type="submit" class="bouton_Ouvrir" onclick="location.href='virement_Admin.php'"><img src="images/add-plus-button.png" style="width:25px; margin-right:20px;">Faire un virement</button><br><br>

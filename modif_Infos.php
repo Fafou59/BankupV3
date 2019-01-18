@@ -27,7 +27,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Si données non renseignées, renvoie sur espace client
                 if (!isset($_POST['telephone'], $_POST['email'])) { ?>

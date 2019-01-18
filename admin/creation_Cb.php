@@ -23,7 +23,7 @@
     </head>
 
     <body>
-        <div class="item_EC" style="display: block">
+        <div class="item" style="display: block">
             <?php
                 // Si donnée dispo
                 if (isset($_POST['id_Compte'])) {

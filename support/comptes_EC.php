@@ -1,4 +1,4 @@
-<div id="comptes" class="item_EC">
+<div id="comptes" class="item">
     <h1 style="font-variant: small-caps;">vos comptes</h1>
     <p style="font-size: 15px; margin-top: 15px;margin-bottom: 15px;">Vous pouvez consulter ci-dessous vos comptes. Vous pouvez également ouvrir un compte en cliquant sur le bouton.</p>
     <hr>
