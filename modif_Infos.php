@@ -10,10 +10,9 @@
     // Connexion à la bdd
     include('support/connexion_bdd.php');
 
-    // Recherche d'un client avec la même adresse mail
+    // Recherche d'un autre client avec la même adresse mail
     if (isset($_POST['email'])) {
-        // Réaliser requête client & agence rattaché à l'id client
-        $requete = $conn->prepare("SELECT client.adresse_Mail_Client FROM client WHERE client.adresse_Mail_Client = '".$_POST['email']."'");
+        $requete = $conn->prepare("SELECT client.adresse_Mail_Client FROM client WHERE client.adresse_Mail_Client = '".$_POST['email']."' AND client.id_Client <> '".$_SESSION['id']."'");
         $requete->execute();
         $resultat = $requete->get_result();
         $client = $resultat->fetch_assoc();

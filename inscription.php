@@ -37,7 +37,7 @@
                         <?php 
                             if (isset($client)) { ?>
                                 <p style="color:red">Un profil avec la même adresse mail existe déjà. Cliquez sur le bouton pour vous connecter :</p>
-                                <button type="button" onclick="location.href='connexion.php'" class="bouton_Annuler" >Connexion</button>
+                                <button type="button" onclick="location.href='connexion.php'" class="bouton_Ouvrir" >Connexion</button>
                                 <br><br><br>
                             <?php }
                         ?>
@@ -46,7 +46,7 @@
                         <br>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td><label for="civilite">civilité</label> :</td>
+                                <td><label for="civilite">civilité*</label> :</td>
                                 <td id="civilite" class="info_Requise">
                                     <input type="radio" name="civilite" value="madame" id="madame" required />
                                     <label for="madame" style="font-size:15px; font-weight:normal; ">Mme</label>
