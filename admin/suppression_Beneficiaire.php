@@ -30,7 +30,7 @@
                 // Si requête réalisée
                 if ($conn->query($sql) === TRUE) { ?>
                     <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=mirroring_Client.php">
+                    <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                     <table>
                         <tr>
                             <td><img id="ckeck_icon" src="images/bouton_Ok.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
@@ -43,7 +43,7 @@
                 // Si requête KO
                 } else { ?>
                     <!-- Redirection après 3 secondes -->
-                    <meta http-equiv="Refresh" content="3;URL=mirroring_Client.php">
+                    <meta http-equiv="Refresh" content="3;URL=mirroring_Admin.php">
                     <table>
                         <tr>
                             <td><img id="ckeck_icon" src="images/bouton_KO.png" style="width: 50px; margin-left: 30px; margin-right: 30px;"></td>
