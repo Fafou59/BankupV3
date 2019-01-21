@@ -59,7 +59,7 @@ I
 NSERT INTO `conseiller`(`nom_Conseiller`, `prenom_Conseiller`, `adresse_Mail_Conseiller`, `telephone_Conseiller`, `mdp_Conseiller`, `agence_Conseiller`)
 
 VALUES 	('Tabourin','Francis','ftabourin@bankup.fr','0123456789','743139240ff612253817440d98acb2ce7939fbb4',1),
-	('Vintin', 'Ludovic', 'lvintin@bankup.fr', '0516283746', 'd9f0fc8309fe4293a3e1953756f91b435ee639d5', 2);
+	    ('Vintin', 'Ludovic', 'lvintin@bankup.fr', '0516283746', 'd9f0fc8309fe4293a3e1953756f91b435ee639d5', 2);
 
 
 
@@ -81,7 +81,7 @@ CREATE TABLE client
 
     adresse_Mail_Client VARCHAR(50) PRIMARY KEY NOT NULL,
 
-    telephone_Client VARCHAR(10) NOT NULL,
+    telephone_Client VARCHAR(12) NOT NULL,
 
     num_Voie_Client INT(5) NOT NULL,
 
@@ -103,16 +103,31 @@ CREATE TABLE client
 
 INSERT INTO `client`(`civilite_Client`, `nom_Client`, `prenom_Client`, `date_Naissance_Client`, `pays_Client`, `adresse_Mail_Client`, `telephone_Client`, `num_Voie_Client`, `voie_Client`, `code_Postal_Client`, `ville_Client`, `mdp_Client`, `agence_Client`)
 
-VALUES  ('H','Lesage','Fabien','1996-02-17','FR','fabien.lesage59@gmail.com','0647501579',42,'rue Pergolèse',75116,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
+VALUES  ('H','Lesage','Fabien','1996-02-17','FR','fabien.lesage59@gmail.com','0647501579',42,'rue Pergolese',75116,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
 
         ('H','Masse','Hugo','1991-12-08','FR','hugomasse@test.fr','0678787878',1,'rue de la Paix',75008,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
 
         ('F','Vandenbooder','Justine','1998-02-07','FR','vdnjustine@test.fr','0647501500',4,'avenue Masrot',10000,'Troys','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
 
-        ('H','Enchanté','Carlos','1933-10-19','FR','carlosenchante@test.fr','0688501579',105,'rue Jules Verne',59380,'Templeuve','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+        ('H','Enchante','Carlos','1933-10-19','FR','carlosenchante@test.fr','0688501579',105,'rue Jules Verne',59380,'Templeuve','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
 
-        ('F','Noissom','Asile','1986-01-29','FR','asilenoissom@test.fr','0752525252',3,'rue du Projet Web',20000,'Ajaccio','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2);
+        ('F','Noissom','Asile','1986-01-29','FR','asilenoissom@test.fr','0752525252',3,'rue du Projet Web',20000,'Ajaccio','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
 
+        ('F','Kistler','Charlotte','1995-04-13','FR','charlottekistler@test.fr','0611787878',1,'rue de la choucroute',67000,'Strasbourg','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+
+        ('H','Chirac','Jacques','1948-02-07','FR','jacqueschirac@test.fr','0911313243',90,'avenue Victoir Hugo',75016,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
+
+        ('H','Dumortier','Nans','1996-02-03','FR','nansdumortier@test.fr','0688501500',3,'rue du college',59310,'Orchies','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+
+        ('F','Mossion','Lisa','1996-08-08','FR','lisamossion@test.fr','0752525253',1,'rue du Developpement web',20169,'Afa','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+
+        ('F','Royal','Segolene','1960-11-30','FR','segoleneroyal@test.fr','0611711878',9,'rue de la présidence',9000,'Creuse','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',2),
+
+        ('F','Ibnass','Sonia','1994-02-07','FR','soniaibnass@test.fr','0808083243',12,'avenue de la majoration',75012,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
+
+        ('H','Le Guellec','Baptiste','1995-07-21','FR','bapt@test.fr','0688501505',23,'rue de Solferino',75100,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1),
+
+        ('H','Billard','Corentin','1996-08-01','FR','corentinbillard@test.fr','0152525253',1,'place Python',75015,'Paris','a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',1);
 
 
 
@@ -148,7 +163,7 @@ VALUES  ('2018-12-28','courant',587,'Compte courant Fabien','FR11111111111111111
 
         ('2018-12-30','courant',12567,'Compte courant Justine','FR2222222222222222222222222','BKUPFRPP',0,3),
 
-        ('2018-12-31','epargne',774,'PEL Fabien','FR1111111111741258741259634','BKUPFRPP',0,1),
+        ('2018-12-31','epargne',774,'PEL Fabien','FR3333333333333333333333333','BKUPFRPP',0,1),
 
         ('2019-01-02','courant',47,'Compte courant Asile','FR0101010101010101010101010','BKUPFRPP',0,5),
 
@@ -156,6 +171,21 @@ VALUES  ('2018-12-28','courant',587,'Compte courant Fabien','FR11111111111111111
 
         ('2019-01-10','courant',47,'Compte courant Hugo','FR1111122222333334444455555','BKUPFRPP',0,2);
 
+        ('2018-01-11','epargne',19001,'Livret A Charlotte','FR1111111111741258741259634','BKUPFRPP',0,6),
+
+        ('2019-01-13','courant',7772,'Compte courant Chirac','FR0000000000000000000000000','BKUPFRPP',0,7),
+
+        ('2019-01-13','epargne',112,'Livret A Nans','FR8686868686868686868686868','BKUPFRPP',100,8),
+
+        ('2019-01-13','courant',47009,'Compte courant Nans','FR9999999999999999999999999','BKUPFRPP',0,8);
+
+        ('2018-01-15','courant',3,'Compte courant Sonia','FR7777777777777777777777777','BKUPFRPP',0,11),
+
+        ('2019-01-16','courant',4000,'Compte courant Lisa Mossion','FR0000010000010000010000010','BKUPFRPP',0,9),
+
+        ('2019-01-19','courant',2897,'Bapt.','FR4444444444444444444444444','BKUPFRPP',100,13),
+
+        ('2019-01-21','courant',5,'Compte courant Corentin','FR5555555555555555555555555','BKUPFRPP',0,14);
 
 
 
