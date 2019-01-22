@@ -37,7 +37,7 @@
             <!-- Liste des bénéficiaires enregistrés -->
             <table class="onglet_Beneficiaire_1" style="margin-bottom:50px;">
                 <tr>
-                    <td style="color: white; padding-left:10px; padding-right:5px;"><h3 style="font-weight: normal; font-variant: small-caps;">vos bénéficiares enregistrés</h3></td>
+                    <td style="color: white; padding-left:10px; padding-right:5px;"><h3 style="font-weight: normal; font-variant: small-caps;">vos bénéficiaires enregistrés</h3></td>
                     <td><button type="submit" class="bouton_Beneficiaire" onclick="toggle_div(this,'liste_Beneficiaire');"><img src="images/angle-arrow-down.png" style="width:25px"></button></td>
                 </tr>
             </table> 
