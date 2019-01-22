@@ -143,8 +143,8 @@
             <hr>
             <table class='liste' border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <th style="width:19%">Client émetteur</th>
-                    <th style="width:45%">Compte bénéficiaire (IBAN)</th>
+                    <th style="width:15%">Client émetteur</th>
+                    <th style="width:49%">Compte bénéficiaire (IBAN)</th>
                     <th style="width:19%">Détenteur compte</th>
                     <th style="width:7%">Montant</th>
                     <th style="width:5%"></th>
@@ -168,7 +168,7 @@
                             $requete->execute();
                             $resultat = $requete->get_result();
                             $beneficiaire_detail = $resultat->fetch_assoc();
-                            echo($beneficiaire_detail['libelle_Compte'].' ('.$beneficiaire_detail['iban_Compte']."')"); ?>
+                            echo($beneficiaire_detail['libelle_Compte']." (".$beneficiaire_detail['iban_Compte'].")"); ?>
                         </td>
                         <td><?php
                             echo($beneficiaire_detail['prenom_Client'].' '.$beneficiaire_detail['nom_Client']); ?>
